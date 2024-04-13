@@ -6,6 +6,7 @@ Schema:
 [Render.com]: https://ue-project.onrender.com/
 
 # User Stories
+Stories are defined as bellow:
 ## As a user:
 
 1. Users should be able to view all restaurants for delivery.
