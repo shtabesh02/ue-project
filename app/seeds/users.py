@@ -7,13 +7,13 @@ def seed_users():
     tabesh = User(
         first_name='Shir', last_name='Tabesh', email='tabesh@tabesh.com', address='123, first st, 023323', city='Silicon Valley', country='USA', phone='12345678', username='tabesh', hashed_password='password')
     marnie = User(
-        first_name='marnie', last_name='marnie', email='marnie@marnie.com', address='123, first st, 023323', city='Silicon Valley', country='USA', phone='12345678', username='tabesh', hashed_password='password')
+        first_name='marnie', last_name='marnie2', email='marnie@marnie.com', address='123, first st, 023323', city='Silicon Valley', country='USA', phone='12345678', username='marnie', hashed_password='password')
     bobbie = User(
-        first_name='bobbie', last_name='bobbie', email='bobbie@bobbie.com', address='123, first st, 023323', city='Silicon Valley', country='USA', phone='12345678', username='tabesh', hashed_password='password')
+        first_name='bobbie', last_name='bobbie2', email='bobbie@bobbie.com', address='123, first st, 023323', city='Silicon Valley', country='USA', phone='12345678', username='bobbie', hashed_password='password')
     fay = User(
-        first_name='Fay', last_name='Fay', email='fay@fay.com', address='123, first st, 023323', city='Silicon Valley', country='USA', phone='12345678', username='tabesh', hashed_password='password')
+        first_name='Yin', last_name='Fay', email='fay@fay.com', address='123, first st, 023323', city='Silicon Valley', country='USA', phone='12345678', username='fay', hashed_password='password')
     chris = User(
-        first_name='chris', last_name='chris', email='chris@chris.com', address='123, first st, 023323', city='Silicon Valley', country='USA', phone='12345678', username='tabesh', hashed_password='password')
+        first_name='chris', last_name='chris2', email='chris@chris.com', address='123, first st, 023323', city='Silicon Valley', country='USA', phone='12345678', username='chris', hashed_password='password')
 
     db.session.add(tabesh)
     db.session.add(marnie)
