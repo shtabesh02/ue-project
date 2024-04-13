@@ -28,7 +28,7 @@ Schema:
  
     - As a hungry user, I want the option to remove products from my shopping cart if I change my mind or want to make adjustments to my order.
 
-6 Users should be able to preform a "transaction" to complete their purchase.
+6. Users should be able to preform a "transaction" to complete their purchase.
  
     - As a hungry user, I want a seamless checkout experience where I can complete my purchase with minimal hassle or confusion.
 ---------------------------------------------------------------------------------------------------------------------------------------
