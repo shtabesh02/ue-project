@@ -4,16 +4,22 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(
-        username='Demo', email='demo@aa.io', password='password')
+    tabesh = User(
+        first_name='Shir', last_name='Tabesh', email='tabesh@tabesh.com', address='123, first st, 023323', city='Silicon Valley', country='USA', phone='12345678', username='tabesh', hashed_password='password')
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
+        first_name='marnie', last_name='marnie', email='marnie@marnie.com', address='123, first st, 023323', city='Silicon Valley', country='USA', phone='12345678', username='tabesh', hashed_password='password')
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+        first_name='bobbie', last_name='bobbie', email='bobbie@bobbie.com', address='123, first st, 023323', city='Silicon Valley', country='USA', phone='12345678', username='tabesh', hashed_password='password')
+    fay = User(
+        first_name='Fay', last_name='Fay', email='fay@fay.com', address='123, first st, 023323', city='Silicon Valley', country='USA', phone='12345678', username='tabesh', hashed_password='password')
+    chris = User(
+        first_name='chris', last_name='chris', email='chris@chris.com', address='123, first st, 023323', city='Silicon Valley', country='USA', phone='12345678', username='tabesh', hashed_password='password')
 
-    db.session.add(demo)
+    db.session.add(tabesh)
     db.session.add(marnie)
     db.session.add(bobbie)
+    db.session.add(fay)
+    db.session.add(chris)
     db.session.commit()
 
 
