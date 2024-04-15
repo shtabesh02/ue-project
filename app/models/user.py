@@ -22,8 +22,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     restaurants = db.relationship("Restaurant", back_populates="user")
-
-    
+    shoppingcarts = db.relationship("ShoppingCart", back_populates="user")
 
 
     @property
@@ -43,5 +42,3 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email
         }
-
-

@@ -11,3 +11,6 @@ class CartItem(db.Model):
 
     #Many-to-One relationship with User
     shoppingcart = db.relationship("ShoppingCart", back_populates="cartitems")
+
+    #many-to-one relationship with menuitems
+    menuitem = db.relationship("MenuItem", back_populates="cartitems")

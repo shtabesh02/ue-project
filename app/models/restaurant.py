@@ -15,3 +15,6 @@ class Restaurant(db.Model):
 
     #Many-to-One relationship with User
     user = db.relationship("User", back_populates="restaurants")
+
+    #one-to-many relationship with menuitems
+    menuitems = db.relationship("MenuItem", back_populates="restaurant")
