@@ -18,3 +18,15 @@ class Restaurant(db.Model):
 
     #one-to-many relationship with menuitems
     menuitems = db.relationship("MenuItem", back_populates="restaurant")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'name': self.name,
+            'description': self.description,
+            'address': self.address,
+            'city': self.city,
+            'country': self.country,
+            'img_url': self.img_url
+        }
