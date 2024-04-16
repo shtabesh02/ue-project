@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify
 from flask_login import login_required
 from app.models import Restaurant
 
-restaurant_routes = Blueprint('restaurants', __name__,url_prefix="/restaurants")
+restaurant_routes = Blueprint('restaurants', __name__)
 
 
 @restaurant_routes.route('/')
