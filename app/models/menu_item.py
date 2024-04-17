@@ -15,3 +15,12 @@ class MenuItem(db.Model):
 
     #one-to-many relationship with cartItems
     cartitems = db.relationship("CartItem", back_populates="menuitem")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'food_name': self.food_name,
+            'description': self.description,
+            'price': self.price,
+            'image': self.img_url
+        }
