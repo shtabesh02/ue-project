@@ -31,7 +31,6 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(menu_items_routes, url_prefix='/api/menu-items')
-
 app.register_blueprint(cart_routes, url_prefix='/api/cart')
 db.init_app(app)
 Migrate(app, db)
