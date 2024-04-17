@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-# from .user import User
+from .menu_item import MenuItem
 
 class Restaurant(db.Model):
     __tablename__ = 'restaurants'
@@ -18,3 +18,20 @@ class Restaurant(db.Model):
 
     #one-to-many relationship with menuitems
     menuitems = db.relationship("MenuItem", back_populates="restaurant")
+
+    def to_dict(self, include_menuitems=False):
+        dic = {
+            'id': self.id,
+            'user_id': self.user_id,
+            'name': self.name,
+            'description': self.description,
+            'address': self.address,
+            'city': self.city,
+            'country': self.country,
+            'img_url': self.img_url
+        }
+
+        if include_menuitems:
+            dic['menuitems'] = [item.to_dict() for item in self.menuitems]
+
+        return dic
