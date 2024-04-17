@@ -5,7 +5,7 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_cartitems():
     cartitem1 = CartItem(shopping_cart_id=1, menu_items_id=1, quantity=3)
-    cartitem2 = CartItem(shopping_cart_id=1, menu_items_id=1, quantity=1)
+    cartitem2 = CartItem(shopping_cart_id=1, menu_items_id=2, quantity=1)
 
 
 
