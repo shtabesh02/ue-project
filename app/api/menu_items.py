@@ -6,7 +6,7 @@ from ..forms.menu_items_form import MenuItemForm
 menu_items_routes = Blueprint('menu-items', __name__)
 
 @menu_items_routes.route('')
-# @login_required
+@login_required
 def show_menu_items():
     menu_items = MenuItem.query.all()
 
@@ -27,21 +27,23 @@ def item_details(id):
             'image': item_details.img_url
         }
 
-@menu_items_routes.route('', methods=['POST'])
-@login_required
-def add_new_items():
-    menu_item = MenuItemForm()
-    data = request.json
-    print('testing1: ', data['food_name'])
-    print('testing2: ', data)
-    menu_item['csrf_token'].data = request.cookies['csrf_token']
-    if menu_item.validate_on_submit():
-        new_item = MenuItem(restaurant_id=1,food_name=data['food_name'], description=data['description'], price=data['price'], img_url=data['img_url'] )
-        print('until here, ok!')
-        db.session.add(new_item)
-        db.session.commit()
-        return jsonify(message='Item added successfully.')
-    return jsonify(message="couldn't addd new item")
+# moved to restaurant_routes.py
+
+# @menu_items_routes.route('', methods=['POST'])
+# @login_required
+# def add_new_items():
+#     menu_item = MenuItemForm()
+#     data = request.json
+#     print('testing1: ', data['food_name'])
+#     print('testing2: ', data)
+#     menu_item['csrf_token'].data = request.cookies['csrf_token']
+#     if menu_item.validate_on_submit():
+#         new_item = MenuItem(restaurant_id=1,food_name=data['food_name'], description=data['description'], price=data['price'], img_url=data['img_url'] )
+#         print('until here, ok!')
+#         db.session.add(new_item)
+#         db.session.commit()
+#         return jsonify(message='Item added successfully.')
+#     return jsonify(message="couldn't addd new item")
 
 
 

@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Restaurant, db
+from app.models import Restaurant,MenuItem, db
 from sqlalchemy.orm import joinedload
 from app.forms import RestaurantForm
+from app.forms.menu_items_form import MenuItemForm
 
 restaurant_routes = Blueprint('restaurants', __name__)
 
@@ -56,6 +57,26 @@ def add_restaurant():
 
         return new_restaurant.to_dict()
     return form.errors
+
+
+# Adding a new Item to a restaurant by ID
+
+@restaurant_routes.route('/<int:id>', methods=['POST'])
+@login_required
+def add_new_items(id):
+    menu_item = MenuItemForm()
+    data = request.json
+    print('testing1: ', data['food_name'])
+    print('testing id: ', id)
+    menu_item['csrf_token'].data = request.cookies['csrf_token']
+    if menu_item.validate_on_submit():
+        new_item = MenuItem(restaurant_id=id,food_name=data['food_name'], description=data['description'], price=data['price'], img_url=data['img_url'] )
+        print('until here, ok!')
+        db.session.add(new_item)
+        db.session.commit()
+        return jsonify(message='Item added successfully.')
+    return jsonify(message="couldn't addd new item")
+
 
 
 @restaurant_routes.route('/<int:id>', methods=['PUT'])
