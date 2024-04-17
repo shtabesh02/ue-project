@@ -29,23 +29,26 @@ def detail_of_a_restaurant(id):
     return restaurant.to_dict(include_menuitems=True)
 
 @restaurant_routes.route('/', methods=['POST'])
+@login_required
 def add_restaurant():
     """
     Create a new restaurant.
     """
     #dict format from front-end
-    data = request.json
-    
+    # data = request.json
+    print(request.cookies['csrf_token'])
     form = RestaurantForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
         new_restaurant = Restaurant(
             user_id = current_user.id,
-            name = data["name"],
-            description = data["description"],
-            address = data["address"],
-            city = data["city"],
-            country = data["country"],
-            img_url = data["img_url"]
+            name = form.data["name"],
+            description = form.data["description"],
+            address = form.data["address"],
+            city = form.data["city"],
+            country = form.data["country"],
+            img_url = form.data["img_url"]
         )
 
         db.session.add(new_restaurant)
@@ -59,16 +62,17 @@ def add_restaurant():
 @login_required
 def update_restaurant(id):
     restaurant = Restaurant.query.get(id)
-    data = request.json
+
     form = RestaurantForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        restaurant.name = data["name"]
-        restaurant.description = data['description']
-        restaurant.address = data['address']
-        restaurant.city = data['city']
-        restaurant.country = data['country']
-        restaurant.img_url = data['img_url']
+        restaurant.name = form.data["name"]
+        restaurant.description = form.data['description']
+        restaurant.address = form.data['address']
+        restaurant.city = form.data['city']
+        restaurant.country = form.data['country']
+        restaurant.img_url = form.data['img_url']
 
         db.session.commit()
         return restaurant.to_dict()
