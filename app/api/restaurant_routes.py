@@ -61,7 +61,7 @@ def add_restaurant():
 
 # Adding a new Item to a restaurant by ID
 
-@restaurant_routes.route('/<int:id>', methods=['POST'])
+@restaurant_routes.route('/<int:id>/menu-items', methods=['POST'])
 @login_required
 def add_new_items(id):
     menu_item = MenuItemForm()
