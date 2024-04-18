@@ -4,6 +4,9 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 class CartItem(db.Model):
     __tablename__ = 'cartitems'
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
     id = db.Column(db.Integer, primary_key=True)
     shopping_cart_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('shoppingcarts.id')))
     menu_items_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('menuitems.id')))
