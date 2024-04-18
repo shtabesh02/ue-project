@@ -5,7 +5,7 @@ class MenuItem(db.Model):
     __tablename__ = "menuitems"
 
     id = db.Column(db.Integer, primary_key=True)
-    restaurant_id = db.Column(db.Integer, db.ForeignKey("restaurants.id"))
+    restaurant_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("restaurants.id")))
     food_name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(1000))
     price = db.Column(db.Float, nullable=False)
