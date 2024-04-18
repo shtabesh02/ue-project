@@ -12,7 +12,7 @@ class MenuItem(db.Model):
     img_url = db.Column(db.String(1000), nullable=False)
 
     # Many-to-One relationship with restaurants
-    restaurant = db.relationship("Restaurant", back_populates="menuitems")
+    the_restaurant = db.relationship("Restaurant", back_populates="menu_items")
 
     # one-to-many relationship with cartItems
     cartitems = db.relationship("CartItem", back_populates="menuitem")

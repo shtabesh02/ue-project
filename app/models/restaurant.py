@@ -17,7 +17,7 @@ class Restaurant(db.Model):
     user = db.relationship("User", back_populates="restaurants")
 
     #one-to-many relationship with menuitems
-    menuitems = db.relationship("MenuItem", back_populates="restaurant")
+    menu_items = db.relationship("MenuItem", back_populates="the_restaurant")
 
     def to_dict(self, include_menuitems=False):
         dic = {
