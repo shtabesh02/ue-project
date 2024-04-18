@@ -12,8 +12,6 @@ def show_menu_items():
 
     return {'menu_items': [menu_item.to_dict() for menu_item in menu_items]}
 
-
-
 @menu_items_routes.route('/<int:id>')
 # @login_required
 def item_details(id):
