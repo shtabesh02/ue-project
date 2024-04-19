@@ -11,6 +11,7 @@ class Restaurant(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     name = db.Column(db.String)
+    type = db.Column(db.String)
     description = db.Column(db.String)
     address = db.Column(db.String)
     city = db.Column(db.String)
@@ -28,6 +29,7 @@ class Restaurant(db.Model):
             'id': self.id,
             'user_id': self.user_id,
             'name': self.name,
+            'type': self.type,
             'description': self.description,
             'address': self.address,
             'city': self.city,
