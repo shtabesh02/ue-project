@@ -6,6 +6,7 @@ class MenuItem(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     restaurant_id = db.Column(db.Integer, db.ForeignKey("restaurants.id"))
+    type = db.Column(db.String(50), nullable=False)
     food_name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(1000))
     price = db.Column(db.Float, nullable=False)
@@ -21,6 +22,7 @@ class MenuItem(db.Model):
         return {
             "id": self.id,
             "restaurant_id": self.restaurant_id,
+            "type": self.type,
             "food_name": self.food_name,
             "description": self.description,
             "price": self.price,

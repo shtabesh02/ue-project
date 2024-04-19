@@ -13,7 +13,7 @@ def preview():
     Retrieve a list of all restaurants.
     """
     restaurants = Restaurant.query.all()
-    return {"restaurants": r.to_dict() for r in restaurants}
+    return {r.name: r.to_dict() for r in restaurants}
 
 
 @restaurant_routes.route('/<int:id>')
@@ -76,7 +76,6 @@ def add_new_items(id):
         db.session.commit()
         return jsonify(message='Item added successfully.')
     return jsonify(message="couldn't addd new item")
-
 
 
 @restaurant_routes.route('/<int:id>', methods=['PUT'])

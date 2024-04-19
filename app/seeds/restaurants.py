@@ -1,19 +1,51 @@
 from app.models import db, Restaurant, User, environment, SCHEMA
 from sqlalchemy.sql import text
+from .seed_map import REST_NAMES, DESC
+from urllib.request import urlopen
+from random import randint
+import json
 
+NUM_OF_RESTAURANTS = 50
+NUM_USERS = 5
+URL = "https://foodish-api.com/api"
 
 # Adds a demo user, you can add other users here if you want
 def seed_restaurants():
-    restaurant1 = Restaurant(user_id=1, name='Restaurant One', description='Description One', address='Address One', city='City One', country='Country One', img_url='img_url_one')
-    restaurant2 = Restaurant(user_id=2, name='Restaurant Two', description='Description Two', address='Address Two', city='City Two', country='Country Two', img_url='img_url_two')
-    restaurant3 = Restaurant(user_id=2, name='Restaurant Three', description='Description Three', address='Address Three', city='City Three', country='Country Three', img_url='img_url_three')
+    # restaurant1 = Restaurant(user_id=1, name='Restaurant One', description='Description One', address='Address One', city='City One', country='Country One', img_url='img_url_one')
+    # restaurant2 = Restaurant(user_id=2, name='Restaurant Two', description='Description Two', address='Address Two', city='City Two', country='Country Two', img_url='img_url_two')
+    # restaurant3 = Restaurant(user_id=2, name='Restaurant Three', description='Description Three', address='Address Three', city='City Three', country='Country Three', img_url='img_url_three')
 
+    # db.session.add(restaurant1)
+    # db.session.add(restaurant2)
+    # db.session.add(restaurant3)
 
-    db.session.add(restaurant1)
-    db.session.add(restaurant2)
-    db.session.add(restaurant3)
+    for _ in range(NUM_OF_RESTAURANTS):
+        new_restaurant = restaurant_builder()
+        db.session.add(new_restaurant)
 
     db.session.commit()
+
+
+def restaurant_builder():
+    # generate random restaurant type / name from our map
+    r_type = randint(0, len(REST_NAMES) - 1)
+    rest_type = REST_NAMES[r_type]
+    rest_name = REST_NAMES[r_type]["names"][randint(0, len(rest_type) - 1)]
+
+    # send a request to open API to get a picture
+    with urlopen(URL) as response:
+        body = response.read()
+
+    # return a random Restaurant
+    return Restaurant(
+        user_id=randint(1, NUM_USERS),
+        name=rest_name,
+        description=DESC[0 : randint(10, len(DESC) - 1)],
+        address=f"Address {randint(1000, 9999)} ln",
+        city=f"City {randint(1000, 9999)}",
+        country=f"Country {randint(100, 999)}",
+        img_url=json.loads(body)["image"],
+    )
 
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
@@ -29,4 +61,3 @@ def undo_restaurants():
         db.session.execute(text("DELETE FROM restaurants"))
 
     db.session.commit()
-
