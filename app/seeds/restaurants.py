@@ -40,6 +40,7 @@ def restaurant_builder():
     return Restaurant(
         user_id=randint(1, NUM_USERS),
         name=rest_name,
+        type=rest_type,
         description=DESC[0 : randint(10, len(DESC) - 1)],
         address=f"Address {randint(1000, 9999)} ln",
         city=f"City {randint(1000, 9999)}",
