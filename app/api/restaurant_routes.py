@@ -23,11 +23,11 @@ def detail_of_a_restaurant(id):
     """
     restaurant = (
         Restaurant.query
-        .options(joinedload(Restaurant.menuitems))
+        .options(joinedload(Restaurant.menu_items))
         .filter(Restaurant.id == id)
         .first()
     )
-    return restaurant.to_dict(include_menuitems=True)
+    return restaurant.to_dict(include_menu_items=True)
 
 @restaurant_routes.route('/', methods=['POST'])
 @login_required

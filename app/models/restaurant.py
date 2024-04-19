@@ -24,7 +24,7 @@ class Restaurant(db.Model):
     #one-to-many relationship with menuitems
     menu_items = db.relationship("MenuItem", back_populates="the_restaurant")
 
-    def to_dict(self, include_menuitems=False):
+    def to_dict(self, include_menu_items=False):
         dic = {
             'id': self.id,
             'user_id': self.user_id,
@@ -37,7 +37,7 @@ class Restaurant(db.Model):
             'img_url': self.img_url
         }
 
-        if include_menuitems:
-            dic['menuitems'] = [item.to_dict() for item in self.menuitems]
+        if include_menu_items:
+            dic['menuitems'] = [item.to_dict() for item in self.menu_items]
 
         return dic
