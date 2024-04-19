@@ -37,7 +37,7 @@ def add_restaurant():
     """
     #dict format from front-end
     # data = request.json
-    print(request.cookies['csrf_token'])
+    # print(request.cookies['csrf_token'])
     form = RestaurantForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -66,12 +66,10 @@ def add_restaurant():
 def add_new_items(id):
     menu_item = MenuItemForm()
     data = request.json
-    print('testing1: ', data['food_name'])
-    print('testing id: ', id)
     menu_item['csrf_token'].data = request.cookies['csrf_token']
     if menu_item.validate_on_submit():
         new_item = MenuItem(restaurant_id=id,food_name=data['food_name'], description=data['description'], price=data['price'], img_url=data['img_url'] )
-        print('until here, ok!')
+        # print('until here, ok!')
         db.session.add(new_item)
         db.session.commit()
         return jsonify(message='Item added successfully.')

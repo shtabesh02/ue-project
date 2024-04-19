@@ -4,8 +4,12 @@ from .menu_item import MenuItem
 class Restaurant(db.Model):
     __tablename__ = 'restaurants'
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
+        
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     name = db.Column(db.String)
     type = db.Column(db.String)
     description = db.Column(db.String)
@@ -18,7 +22,7 @@ class Restaurant(db.Model):
     user = db.relationship("User", back_populates="restaurants")
 
     #one-to-many relationship with menuitems
-    menuitems = db.relationship("MenuItem", back_populates="restaurant")
+    menu_items = db.relationship("MenuItem", back_populates="the_restaurant")
 
     def to_dict(self, include_menuitems=False):
         dic = {
