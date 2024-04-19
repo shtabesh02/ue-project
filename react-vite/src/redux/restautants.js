@@ -3,17 +3,17 @@ const ADD_RESTAURANT = 'restaurants/addRestaurant';
 const UPDATE_RESTAURANT = 'restaurants/updateRestaurant';
 const DELETE_RESTAURANT = 'restaurants/deleteRestaurant';
 
-const loadRestaurants = (restaurants) => ({
+export const loadRestaurants = (restaurants) => ({
   type: LOAD_RESTAURANTS,
   payload: restaurants
 });
 
-const addRestaurant = (restaurant) => ({
+export const addRestaurant = (restaurant) => ({
     type: ADD_RESTAURANT,
     payload: restaurant
   });
 
-const deleteRestaurant = (restaurantId) => ({
+export const deleteRestaurant = (restaurantId) => ({
   type: DELETE_RESTAURANT,
   payload: restaurantId
 });
@@ -29,10 +29,10 @@ const restaurantReducer = (state = initialState, action) => {
             newState = Object.assign({}, state);
             // console.log("what is action spots: ", action.spots)
             // console.log(action.spots.length)
-
-            action.payload.forEach(restaurant => {
-                newState[restaurant.id] = restaurant}
-            )
+            newState = {...state, ...action.payload}
+            // action.payload.forEach(restaurant => {
+            //     newState[restaurant.id] = restaurant}
+            // )
             return newState;
         case ADD_RESTAURANT:
             newState = {...state}

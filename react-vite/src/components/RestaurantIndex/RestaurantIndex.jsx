@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useDispatch, useSelector} from "react-redux";
 import RestaurantItem from '../RestaurantItem';
 // import { loadSpotsThunk } from '../../store/spots';
@@ -9,6 +9,7 @@ function RestaurantIndex() {
     const dispatch = useDispatch();
 
     const allRestaurants = useSelector(state => state.restaurants)
+    if (!Object.values(allRestaurants).length) return <div>No Restaurants</div>;
 
     return (
         <div className="index">
