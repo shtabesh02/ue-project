@@ -8,8 +8,8 @@ class MenuItem(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    type = db.Column(db.String(50), nullable=False)
     restaurant_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("restaurants.id")))
+    type = db.Column(db.String(50), nullable=False)
     food_name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(1000))
     price = db.Column(db.Float, nullable=False)
