@@ -13,7 +13,7 @@ def preview():
     Retrieve a list of all restaurants.
     """
     restaurants = Restaurant.query.all()
-    return {r.name: r.to_dict() for r in restaurants}
+    return {"restaurants": {r.id: r.to_dict() for r in restaurants}}
 
 
 @restaurant_routes.route('/<int:id>')
