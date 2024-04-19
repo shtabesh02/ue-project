@@ -1,12 +1,9 @@
 from app.models import db, MenuItem, Restaurant, environment, SCHEMA
 from sqlalchemy.sql import text
-from .seed_map import FOOD_NAMES, DESC
-from urllib.request import urlopen
+from .seed_map import FOOD_NAMES, DESC, IMG_TYPES
 from random import randint
-import json
 
 NUM_MENU_ITEMS_PER_RES = 10
-URL = "https://foodish-api.com/api"
 
 
 def seed_menuitems():
@@ -33,9 +30,8 @@ def menu_builder(i):
     item_type = FOOD_NAMES[r_type]
     food_type = FOOD_NAMES[r_type]["names"][randint(0, len(item_type) - 1)]
 
-    # send a request to open API to get a picture
-    with urlopen(URL) as response:
-        body = response.read()
+    # generate a random image based off of https://foodish-api.com/
+    img = IMG_TYPES[randint(0, len(IMG_TYPES) - 1)]
 
     # return a random MenuItem
     return MenuItem(
@@ -44,7 +40,7 @@ def menu_builder(i):
         food_name=food_type,
         description=DESC[0 : randint(10, len(DESC) - 1)],
         price=randint(1, 50),
-        img_url=json.loads(body)["image"],
+        img_url=f"https://foodish-api.com/images/{img["name"]}/{img["name"]}{randint(1, img["num"])}.jpg",
     )
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't

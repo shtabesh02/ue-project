@@ -1,3 +1,15 @@
+IMG_TYPES = [
+    {"name": "biryani", "num": 81},
+    {"name": "burger", "num": 87},
+    {"name": "butter-chicken", "num": 22},
+    {"name": "dessert", "num": 36},
+    {"name": "dosa", "num": 83},
+    {"name": "idly", "num": 77},
+    {"name": "pasta", "num": 34},
+    {"name": "pizza", "num": 95},
+    {"name": "rice", "num": 35},
+    {"name": "samosa", "num": 22},
+]
 FOOD_NAMES = [
     {"type": "Pork", "names": ["Bacon", "Ham"]},
     {"type": "Beef", "names": ["Wagyu", "Steak"]},

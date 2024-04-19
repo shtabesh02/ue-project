@@ -1,13 +1,10 @@
 from app.models import db, Restaurant, User, environment, SCHEMA
 from sqlalchemy.sql import text
-from .seed_map import REST_NAMES, DESC
-from urllib.request import urlopen
+from .seed_map import REST_NAMES, DESC, IMG_TYPES
 from random import randint
-import json
 
 NUM_OF_RESTAURANTS = 50
 NUM_USERS = 5
-URL = "https://foodish-api.com/api"
 
 # Adds a demo user, you can add other users here if you want
 def seed_restaurants():
@@ -32,9 +29,8 @@ def restaurant_builder():
     rest_type = REST_NAMES[r_type]
     rest_name = REST_NAMES[r_type]["names"][randint(0, len(rest_type) - 1)]
 
-    # send a request to open API to get a picture
-    with urlopen(URL) as response:
-        body = response.read()
+    # generate a random image based off of https://foodish-api.com/
+    img = IMG_TYPES[randint(0, len(IMG_TYPES) - 1)]
 
     # return a random Restaurant
     return Restaurant(
@@ -45,7 +41,7 @@ def restaurant_builder():
         address=f"Address {randint(1000, 9999)} ln",
         city=f"City {randint(1000, 9999)}",
         country=f"Country {randint(100, 999)}",
-        img_url=json.loads(body)["image"],
+        img_url=f"https://foodish-api.com/images/{img["name"]}/{img["name"]}{randint(1, img["num"])}.jpg",
     )
 
 
