@@ -76,11 +76,13 @@ def add_new_items(id):
     return jsonify(message="couldn't addd new item")
 
 
-
 @restaurant_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def update_restaurant(id):
     restaurant = Restaurant.query.get(id)
+
+    if int(current_user.get_id()) != restaurant.user_id:
+        return {"errors": {"message": "Unauthorized"}}, 401
 
     form = RestaurantForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -102,8 +104,13 @@ def update_restaurant(id):
 @login_required
 def delete_restaurant(id):
     restaurant = Restaurant.query.get(id)
+
     if not restaurant:
         return {"message": "Restaurant couldn't be found"}
+
+    if int(current_user.get_id()) != restaurant.user_id:
+        return {"errors": {"message": "Unauthorized"}}, 401
+
     db.session.delete(restaurant)
     db.session.commit()
     return {'message': 'Successfully deleted restaurant'}
