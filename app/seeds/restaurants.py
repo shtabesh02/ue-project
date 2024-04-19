@@ -6,6 +6,7 @@ from random import randint
 NUM_OF_RESTAURANTS = 50
 NUM_USERS = 5
 
+
 # Adds a demo user, you can add other users here if you want
 def seed_restaurants():
     # restaurant1 = Restaurant(user_id=1, name='Restaurant One', description='Description One', address='Address One', city='City One', country='Country One', img_url='img_url_one')
@@ -36,12 +37,12 @@ def restaurant_builder():
     return Restaurant(
         user_id=randint(1, NUM_USERS),
         name=rest_name,
-        type=rest_type,
+        type=rest_type["type"],
         description=DESC[0 : randint(10, len(DESC) - 1)],
         address=f"Address {randint(1000, 9999)} ln",
         city=f"City {randint(1000, 9999)}",
         country=f"Country {randint(100, 999)}",
-        img_url=f"https://foodish-api.com/images/{img["name"]}/{img["name"]}{randint(1, img["num"])}.jpg",
+        img_url=f"https://foodish-api.com/images/{img['name']}/{img['name']}{randint(1, img['num'])}.jpg",
     )
 
 
@@ -53,7 +54,9 @@ def restaurant_builder():
 # it will reset the primary keys for you as well.
 def undo_restaurants():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.restaurants RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.restaurants RESTART IDENTITY CASCADE;"
+        )
     else:
         db.session.execute(text("DELETE FROM restaurants"))
 

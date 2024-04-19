@@ -24,6 +24,7 @@ def seed_menuitems():
 
     db.session.commit()
 
+
 def menu_builder(i):
     # generate random food type / name from our map
     r_type = randint(0, len(FOOD_NAMES) - 1)
@@ -40,8 +41,9 @@ def menu_builder(i):
         food_name=food_type,
         description=DESC[0 : randint(10, len(DESC) - 1)],
         price=randint(1, 50),
-        img_url=f"https://foodish-api.com/images/{img["name"]}/{img["name"]}{randint(1, img["num"])}.jpg",
+        img_url=f"https://foodish-api.com/images/{img['name']}/{img['name']}{randint(1, img['num'])}.jpg",
     )
+
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
 # have a built in function to do this. With postgres in production TRUNCATE
