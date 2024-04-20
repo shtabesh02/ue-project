@@ -1,16 +1,20 @@
-// import { useEffect } from 'react';
-// import { useDispatch, useSelector} from "react-redux";
+import './RestaurantItem.css';
 
-// import { loadSpotsThunk } from '../../store/spots';
-// import SpotIndexItem from '../SpotIndexItem';
-// import './SpotIndex.css';
-
-function RestaurantItem() {
+function RestaurantItem({restaurant}) {
 
 
     return (
-        <div className="index">
-            RestaurantItem
+        <div className='RestaurantItemContainer'>
+            <div>
+                <img
+                    className="restaurant-entry-image"
+                    alt={restaurant.img_url}
+                    src={`${restaurant.img_url}`}
+                />
+                 <div className="restaurant-item">
+                        <div className='name'>{restaurant.name}</div>
+                </div>
+            </div>
         </div>
     )
 }

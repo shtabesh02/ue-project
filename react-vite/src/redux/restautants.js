@@ -20,13 +20,24 @@ export const deleteRestaurant = (restaurantId) => ({
 
 
 
+export const loadRestaurantsThunk = () => async (dispatch) => {
+	const response = await fetch("/api/restaurants/");
+  console.log("loadRestaurantsThunk working")
+	if (response.ok) {
+		const data = await response.json();
+		if (data.errors) {
+			return data.errors;
+		}
+		dispatch(loadRestaurants(data));
+	}
+};
 const initialState = {};
 
 const restaurantReducer = (state = initialState, action) => {
     let newState
     switch (action.type) {
         case LOAD_RESTAURANTS:
-            newState = Object.assign({}, state);
+            // newState = Object.assign({}, state);
             // console.log("what is action spots: ", action.spots)
             // console.log(action.spots.length)
             newState = {...state, ...action.payload}

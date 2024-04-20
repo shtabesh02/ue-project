@@ -10,7 +10,7 @@ import "./index.css";
 
 const store = configureStore();
 
-// console.log("Environment:", import.meta.env.MODE)
+console.log("Environment:", import.meta.env.MODE)
 if (import.meta.env.MODE !== "development") {
   window.store = store;
   window.sessionActions = sessionActions;
