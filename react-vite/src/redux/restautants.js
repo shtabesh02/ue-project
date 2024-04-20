@@ -22,6 +22,7 @@ export const deleteRestaurant = (restaurantId) => ({
 
 export const loadRestaurantsThunk = () => async (dispatch) => {
 	const response = await fetch("/api/restaurants/");
+  console.log("loadRestaurantsThunk working")
 	if (response.ok) {
 		const data = await response.json();
 		if (data.errors) {

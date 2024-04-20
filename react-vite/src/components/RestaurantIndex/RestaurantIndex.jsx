@@ -1,8 +1,9 @@
+// import { useEffect } from 'react';
 import { useDispatch, useSelector} from "react-redux";
 import RestaurantItem from '../RestaurantItem';
-import RestaurantCategories from '../RestaurantCategory'
-import RestaurantListing from '../RestaurantListing'
 import { useEffect } from "react";
+// import { loadSpotsThunk } from '../../store/spots';
+// import SpotIndexItem from '../SpotIndexItem';
 import './RestaurantIndex.css';
 import { loadRestaurantsThunk } from "../../redux/restautants";
 
@@ -12,7 +13,7 @@ function RestaurantIndex() {
     const allRestaurants = useSelector(state => state.restaurants);
 
     useEffect(() => {
-        console.log("useEffect for RestaurantIndex runs ");
+        console.log("useEffect for Restaurant runs ");
         dispatch(loadRestaurantsThunk());
     }, [dispatch]);
 
@@ -20,11 +21,23 @@ function RestaurantIndex() {
 
     // Get distinct types
     const distinctTypes = [...new Set(Object.values(allRestaurants).map(restaurant => restaurant.type))];
-    const feature = null
+
     return (
         <div className="index">
-            <RestaurantCategories categories={distinctTypes}/>
-            <RestaurantListing feature = {feature}/>
+            <div className="restaurantByType">
+                {distinctTypes.map(type => (
+                    <div className="restaurantSection" key={type}>
+                        <h2>{type}</h2>
+                        {Object.values(allRestaurants)
+                            .filter(restaurant => restaurant.type === type)
+                            .map(restaurant => (
+                                <div className="item" key={restaurant.id}>
+                                    <RestaurantItem restaurantId={restaurant.id} restaurant={restaurant} />
+                                </div>
+                            ))}
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }

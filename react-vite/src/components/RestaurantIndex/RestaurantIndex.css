@@ -1,24 +1,37 @@
-.restaurant-categories {
-    padding: 10px;
+.restaurantByType {
+    display: flex;
+    flex-direction: column;
 }
-.category-list {
+.restaurantSection {
     display: flex;
     flex-direction: row;
+    margin: 70px;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
 
+}
+.item {
+    margin: 15px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 
-.category-card {
-  margin: 10px;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
-}
 
+@media (min-width: 480px) {
+    .item {
+      width: 50%; /* Two columns on screens wider than 480px */
 
-.category-card h3 {
-  text-align: center;
-}
+    }
+  }
+
+  @media (min-width: 768px) {
+    .item {
+      width: 33.33%; /* Three columns on screens wider than 768px */
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .item {
+      width: 25%; /* Four columns on screens wider than 1200px */
+    }
+  }
