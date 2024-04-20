@@ -37,13 +37,7 @@ const restaurantReducer = (state = initialState, action) => {
     let newState
     switch (action.type) {
         case LOAD_RESTAURANTS:
-            // newState = Object.assign({}, state);
-            // console.log("what is action spots: ", action.spots)
-            // console.log(action.spots.length)
             newState = {...state, ...action.payload}
-            // action.payload.forEach(restaurant => {
-            //     newState[restaurant.id] = restaurant}
-            // )
             return newState;
         case ADD_RESTAURANT:
             newState = {...state}
