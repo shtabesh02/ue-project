@@ -42,7 +42,7 @@ function ProfileButton() {
   };
 
   return (
-    <>
+    <div className="left_menubar">
       <button onClick={toggleMenu}>
         <FaUserCircle />
       </button>
@@ -84,17 +84,20 @@ function ProfileButton() {
           ) : (
             <>
             <li>
+              <div className="sl">
               <OpenModalMenuItem
                 itemText="Sign Up"
                 onItemClick={closeMenu}
                 modalComponent={<SignupFormModal />}
               />
-            </li>
               <OpenModalMenuItem
                 itemText="Log In"
                 onItemClick={closeMenu}
                 modalComponent={<LoginFormModal />}
               />
+              </div>
+            </li>
+
               <li>
               <div className="addnewrestaurant">
                 <span><NavLink to={''} style={{ textDecoration: 'none' }}>Add your restaurant</NavLink></span>
@@ -117,7 +120,7 @@ function ProfileButton() {
           )}
         </ul>
       )}
-    </>
+    </div>
   );
 }
 

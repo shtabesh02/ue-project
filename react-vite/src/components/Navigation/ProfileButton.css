@@ -1,12 +1,23 @@
 .profile-dropdown{
+    /* position: relative; */
+    top: 0px;
+    left: 0px;
     display: flex;
     flex-direction: column;
     padding: 20px;
     width: 200px;
-    height: 350px;
+    height: 100vh;
+    background-color: rgb(243, 238, 238);
 
 }
 
+.sl{
+    display: flex;
+    flex-direction: column;
+}
+.uber_eats_menu{
+    display: flex;
+}
 .profile-dropdown li{
     padding: 5px;
 }

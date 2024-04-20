@@ -2,13 +2,14 @@
   position: absolute;
 }
 
-.nav_bar ul{
+.nav_bar{
+  background-color: rgb(87, 112, 134);
+}
+.nav_bar .h_menu{
   list-style: none;
   display: flex;
   justify-content: space-between;
   margin: 0px;
-  background-color: antiquewhite;
-  height: 60px;
 }
 
 .nav_bar > ul > li{

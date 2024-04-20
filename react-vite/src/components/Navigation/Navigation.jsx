@@ -9,12 +9,14 @@ function Navigation() {
   return (
     <div className="nav_bar">
       {!user ? (
-        <ul>
+        <ul className="h_menu">
           <li className="uber_eats_menu">
             <span>
               <ProfileButton />
             </span>
+            <span>
             <NavLink to={'/'} style={{ textDecoration: 'none' }}>Uber Eats</NavLink>
+            </span>
           </li>
           <li className="login_signup">
             <div>
