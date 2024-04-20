@@ -1,18 +1,54 @@
 import { NavLink } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
+import { useSelector } from "react-redux";
 
 function Navigation() {
-  return (
-    <ul>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
+  const user = useSelector(state => state.session.user)
 
-      <li>
-        <ProfileButton />
-      </li>
-    </ul>
+  return (
+    <div className="nav_bar">
+      {!user ? (
+        <ul>
+          <li className="uber_eats_menu">
+            <span>
+              <ProfileButton />
+            </span>
+            <NavLink to={'/'} style={{ textDecoration: 'none' }}>Uber Eats</NavLink>
+          </li>
+          <li className="login_signup">
+            <div>
+              <span>
+                <NavLink to={'/login'} style={{ textDecoration: 'none' }}>Login-in</NavLink>
+              </span>
+              <span>
+                <NavLink to={'/signup'} style={{ textDecoration: 'none' }}>Signup</NavLink>
+              </span>
+            </div>
+          </li>
+        </ul>
+      ) : (
+        <ul>
+          <li className="uber_eats_menu">
+            <span>
+              <span>
+                <ProfileButton />
+              </span>
+            </span>
+            <NavLink to={'/'} style={{ textDecoration: 'none' }}>Uber Eats</NavLink>
+          </li>
+          <li className="login_signup">
+            <div>
+              <span>Delivery</span>
+              <span>Pickup</span>
+              <span>Delivery Address</span>
+              <input type="text" placeholder="Search Uber Eats" />
+              <span>Shopping Cart</span>
+            </div>
+          </li>
+        </ul>
+      )}
+    </div>
   );
 }
 

@@ -1,0 +1,21 @@
+.profile-dropdown{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 200px;
+    height: 350px;
+
+}
+
+.profile-dropdown li{
+    padding: 5px;
+}
+.profile-dropdown li:hover{
+    background-color: beige;
+    border-radius: 5px;
+}
+
+.profile-dropdown .addnewrestaurant{
+    display: flex;
+    flex-direction: column;
+}
