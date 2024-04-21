@@ -1,0 +1,86 @@
+.RestDetails {
+    display: grid;
+    grid-template-columns: 1fr 9fr;
+}
+
+.RestDetails__img {
+    width: 100%;
+}
+
+.RestDetails__imgContainer {
+    overflow: hidden;
+    height: 300px;
+    border-radius: 20px;
+    margin: 0px 30px;
+}
+
+.RestDetails__nav div {
+    cursor: pointer;
+}
+
+.RestDetails__nav  {
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 30px;
+    font-size: 20px;
+}
+
+.RestDetails__details {
+    width: 100%;
+}
+
+.RestDetails__header h1 {
+    color: black;
+}
+
+.RestDetails__header {
+    border-bottom: solid lightgrey 1px;
+    color: grey;
+    margin: 0px 30px;
+}
+
+.RestDetails__cardContainer {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.RestDetails__menuCard {
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 3fr 150px;
+    grid-template-rows: 150px;
+    overflow: hidden;
+    border-radius: 10px;
+    border: solid lightgrey 1px;
+}
+
+.RestDetails__menuImg {
+    height: 150px;
+}
+
+.RestDetails__menuImgContainer {
+    display: flex;
+    justify-content: center;
+    height: 150px;
+    width: 150px;
+    overflow: hidden;
+}
+
+.RestDetails__menuCardDetails {
+    padding: 15px;
+    color: grey;
+    background: linear-gradient(white 90%, lightgrey), rgba(0, 0, 0, 0);
+    box-shadow: inset lightgrey 0 0 5px;
+}
+
+.RestDetails__menuCardDetails strong {
+    color: black;
+}
