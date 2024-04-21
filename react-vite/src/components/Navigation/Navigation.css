@@ -1,3 +1,38 @@
 .profile-dropdown {
   position: absolute;
 }
+
+.nav_bar{
+  background-color: rgb(87, 112, 134);
+}
+.nav_bar .h_menu{
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  margin: 0px;
+  align-items: center;
+}
+
+.nav_bar > ul > li{
+  margin: 20px;
+}
+.nav_bar > ul .login_signup span{
+  margin: 0px 10px;
+  cursor: pointer;
+  background-color: aliceblue;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+
+.nav_bar > ul > .uber_eats_menu span{
+  margin: 0px 10px;
+}
+
+.uber_eats_menu{
+  display: flex;
+  align-items: center;
+}
+.uber_eats_menu > span{
+  cursor: pointer;
+}
