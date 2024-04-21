@@ -51,7 +51,7 @@ function ProfileButton() {
           {user ? (
             <>
               <li className="profile-img">
-                <span><i class="fa-solid fa-user fa-2x"></i></span>
+                <span><i className="fa-solid fa-user fa-2x"></i></span>
                 <div>
                   <div>{user.username}</div>
                   <div>Manage Account</div>
@@ -64,14 +64,14 @@ function ProfileButton() {
               <li>Help</li>
               <li>Promotions</li>
               <li className="uber1">
-                <span><i class="fa-regular fa-circle"></i></span>
+                <span><i className="fa-regular fa-circle"></i></span>
                 <div>
                   <div>Uber One</div>
                   <div>Try free for 4 weeks</div>
                 </div>
               </li>
               <li className="invitefriends">
-                <span><i class="fa-solid fa-gift"></i></span>
+                <span><i className="fa-solid fa-gift"></i></span>
                 <div>
                   <div>Invite friends</div>
                   <div>You get $15 off</div>

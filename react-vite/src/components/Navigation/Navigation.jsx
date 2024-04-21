@@ -46,7 +46,7 @@ function Navigation() {
               <span>Pickup</span>
               <span>Delivery Address</span>
               <input type="text" placeholder="Search Uber Eats" />
-              <span>Shopping Cart</span>
+              <span><i className="fa-solid fa-cart-shopping"></i></span>
             </div>
           </li>
         </ul>
