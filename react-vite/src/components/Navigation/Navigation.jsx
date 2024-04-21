@@ -10,17 +10,15 @@ function Navigation() {
     <div className="nav_bar">
       {!user ? (
         <ul className="h_menu">
-          <li>
-          <span>
+          <li className="uber_eats_menu">
+            <span>
               <ProfileButton />
             </span>
-          </li>
-          <li className="uber_eats_menu">
-            
             <span>
-            <NavLink to={'/'} style={{ textDecoration: 'none' }}>Uber Eats</NavLink>
+              <NavLink to={'/'} style={{ textDecoration: 'none' }}>Uber Eats</NavLink>
             </span>
           </li>
+  
           <li className="login_signup">
             <div>
               <span>

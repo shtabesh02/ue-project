@@ -50,70 +50,92 @@ function ProfileButton() {
         <ul className={"profile-dropdown"} ref={ulRef}>
           {user ? (
             <>
-              <li>
-                <span><img src="" alt="profile" /></span>
-                <span>{user.username}</span>
-                <span>Manage Account</span>
-                </li>
+              <li className="profile-img">
+                <span><i class="fa-solid fa-user fa-2x"></i></span>
+                <div>
+                  <div>{user.username}</div>
+                  <div>Manage Account</div>
+                </div>
+              </li>
               <li>Orders</li>
               <li>Favorites</li>
               <li>Wallet</li>
               <li>Meal plan</li>
               <li>Help</li>
               <li>Promotions</li>
-              <li>
-                <span><img src="" alt="Uber One" /></span>
-                <span>Uber One</span>
-                <span>Try free for 4 weeks</span>
+              <li className="uber1">
+                <span><i class="fa-regular fa-circle"></i></span>
+                <div>
+                  <div>Uber One</div>
+                  <div>Try free for 4 weeks</div>
+                </div>
               </li>
-              <li>
-                <span><img src="" alt="invite friends" /></span>
-                <span>Invite friends</span>
-                <span>You get $15 off</span>
+              <li className="invitefriends">
+                <span><i class="fa-solid fa-gift"></i></span>
+                <div>
+                  <div>Invite friends</div>
+                  <div>You get $15 off</div>
+                </div>
               </li>
               <li>
                 <button onClick={logout}>Log Out</button>
               </li>
               <hr />
-              <div className="addnewrestaurant">
-                <span><NavLink to={''} style={{ textDecoration: 'none' }}>Create a business account</NavLink></span>
-                <span><NavLink to={''} style={{ textDecoration: 'none' }}>Add your restaurant</NavLink></span>
-                <span><NavLink to={''} style={{ textDecoration: 'none' }}>Sign up to deliver</NavLink></span>
-              </div>
+              <li>
+                <div className="addnewrestaurant">
+                  <div><NavLink to={''} style={{ textDecoration: 'none' }}>Create a business account</NavLink></div>
+                  <div><NavLink to={''} style={{ textDecoration: 'none' }}>Add your restaurant</NavLink></div>
+                  <div><NavLink to={''} style={{ textDecoration: 'none' }}>Sign up to deliver</NavLink></div>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <div className="uberlogo">
+                    <img src="./ubereat.svg" alt="Uber eats" style={{ width: "35px" }} />
+                    <p>There&apos;s more to love in the app.</p>
+                  </div>
+                  <div className="iphone_android">
+                    <p><i className="fa-brands fa-apple"></i><span>iPhone</span></p>
+                    <p><i className="fa-solid fa-robot"></i><span>Android</span></p>
+                  </div>
+                </div>
+              </li>
             </>
           ) : (
             <>
-            <li>
-              <div className="sl">
-              <OpenModalMenuItem
-                itemText="Sign Up"
-                onItemClick={closeMenu}
-                modalComponent={<SignupFormModal />}
-              />
-              <OpenModalMenuItem
-                itemText="Log In"
-                onItemClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
-              </div>
-            </li>
-
               <li>
-              <div className="addnewrestaurant">
-                <span><NavLink to={''} style={{ textDecoration: 'none' }}>Add your restaurant</NavLink></span>
-                <span><NavLink to={''} style={{ textDecoration: 'none' }}>Sign up to deliver</NavLink></span>
-                <span><NavLink to={''} style={{ textDecoration: 'none' }}>Create a business account</NavLink></span>
-              </div>
-              </li>
-              <li>
-
-              <div>
-                <div className="uberlogo">There&apos;s more to love in the app.</div>
-                <div className="iphone_android">
-                  <p>iPhone</p>
-                  <p>Android</p>
+                <div className="sl">
+                  <OpenModalMenuItem
+                    itemText="Sign Up"
+                    onItemClick={closeMenu}
+                    modalComponent={<SignupFormModal />}
+                  />
+                  <OpenModalMenuItem
+                    itemText="Log In"
+                    onItemClick={closeMenu}
+                    modalComponent={<LoginFormModal />}
+                  />
                 </div>
-              </div>
+              </li>
+
+              <li>
+                <div className="addnewrestaurant">
+                  <span><NavLink to={''} style={{ textDecoration: 'none' }}>Add your restaurant</NavLink></span>
+                  <span><NavLink to={''} style={{ textDecoration: 'none' }}>Sign up to deliver</NavLink></span>
+                  <span><NavLink to={''} style={{ textDecoration: 'none' }}>Create a business account</NavLink></span>
+                </div>
+              </li>
+              <li className="fixedbottom">
+              <div>
+                  <div className="uberlogo">
+                    <img src="./ubereat.svg" alt="Uber eats" style={{ width: "35px" }} />
+                    <p>There&apos;s more to love in the app.</p>
+                  </div>
+                  <div className="iphone_android">
+                    <p><i className="fa-brands fa-apple"></i><span>iPhone</span></p>
+                    <p><i className="fa-solid fa-robot"></i><span>Android</span></p>
+                  </div>
+                </div>
               </li>
 
             </>

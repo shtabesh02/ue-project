@@ -5,15 +5,47 @@
     display: flex;
     flex-direction: column;
     padding: 20px;
-    width: 200px;
+    width: 250px;
     height: 100vh;
     background-color: rgb(243, 238, 238);
-
+    list-style: none;
+    gap: 10px;
 }
+
 
 .sl{
     display: flex;
     flex-direction: column;
+}
+
+.profile-img{
+    display: flex;
+    align-items: center;
+}
+
+.uber1{
+    display: flex;
+    align-items: center;
+}
+
+.invitefriends{
+    display: flex;
+    align-items: center;
+}
+
+.uberlogo{
+    display: flex;
+    gap: 5px;
+}
+
+.iphone_android{
+    display: flex;
+    gap: 10px;
+}
+.iphone_android p{
+    background-color: aliceblue;
+    border-radius: 30px;
+    padding: 5px;
 }
 .uber_eats_menu{
     display: flex;
@@ -21,12 +53,16 @@
 .profile-dropdown li{
     padding: 5px;
 }
-.profile-dropdown li:hover{
-    background-color: beige;
-    border-radius: 5px;
-}
+
 
 .profile-dropdown .addnewrestaurant{
     display: flex;
     flex-direction: column;
+    gap: 10px;
+}
+
+
+.fixedbottom{
+    position: fixed;
+    bottom: 10px;
 }
