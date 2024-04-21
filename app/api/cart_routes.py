@@ -15,7 +15,7 @@ def list_cart_items():
     #     cart_items[item.id]["quantity"] = item.quantity
     # return cart_items
 
-    return {item.quantity: item.menu_item.to_dict() for item in CartItem.query.all()}
+    return {item.quantity: item.menuitem.to_dict() for item in CartItem.query.all()}
 
 
 @cart_routes.route("/", methods=["POST"])
@@ -56,5 +56,5 @@ def make_transaction():
         # commit db changes and return our "reciept"
         db.session.commit()
         reciept = CartItem.query.filter(CartItem.shopping_cart_id == cart.id).all()
-        return {cart_item.id: cart_item.menu_item.to_dict() for cart_item in reciept}
+        return {cart_item.id: cart_item.menuitem.to_dict() for cart_item in reciept}
     return {"errors": {"message": "Bad Data"}}, 400
