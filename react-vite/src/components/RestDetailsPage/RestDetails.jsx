@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadRestDetails } from "../../redux/restaurants";
 import MenuNav from "./MenuNav";
-import "./RestDetails.css";
 import MenuItemCard from "./MenuItemCard";
+import "./RestDetails.css";
 
 export default function RestDetails() {
 	const { id } = useParams();
