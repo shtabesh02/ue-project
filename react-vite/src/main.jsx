@@ -9,10 +9,19 @@ import "./index.css";
 
 const store = configureStore();
 
+
+
 if (import.meta.env.MODE !== "production") {
   window.store = store;
   window.sessionActions = sessionActions;
 }
+// if (import.meta.env.MODE !== "development") {
+//   window.store = store;
+//   window.sessionActions = sessionActions;
+//   window.restaurantActions = restaurantActions;
+//   // window.store.dispatch(window.restaurantActions.loadRestaurants());
+//   // console.log("window.restaurantActions" , window.restaurantActions)
+// }
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
