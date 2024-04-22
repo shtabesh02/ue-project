@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import { useSelector } from "react-redux";
+import CartButton from "./CartButton";
 
 function Navigation() {
   const user = useSelector(state => state.session.user)
@@ -46,7 +47,7 @@ function Navigation() {
               <span>Pickup</span>
               <span>Delivery Address</span>
               <input type="text" placeholder="Search Uber Eats" />
-              <span><i className="fa-solid fa-cart-shopping"></i></span>
+              <span className="Navigation__cart"><CartButton /></span>
             </div>
           </li>
         </ul>
