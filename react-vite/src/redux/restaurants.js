@@ -2,6 +2,7 @@ const LOAD_RESTAURANTS = 'restaurants/loadRestaurants';
 const ADD_RESTAURANT = 'restaurants/addRestaurant';
 // const UPDATE_RESTAURANT = 'restaurants/updateRestaurant';
 const DELETE_RESTAURANT = 'restaurants/deleteRestaurant';
+const SET_DETAILS = "restaurants/setDetails";
 
 export const loadRestaurants = (restaurants) => ({
   type: LOAD_RESTAURANTS,
@@ -18,6 +19,10 @@ export const deleteRestaurant = (restaurantId) => ({
   payload: restaurantId
 });
 
+const setDetails = (payload) => ({
+	type: SET_DETAILS,
+	payload,
+});
 
 
 export const loadRestaurantsThunk = () => async (dispatch) => {
@@ -30,9 +35,19 @@ export const loadRestaurantsThunk = () => async (dispatch) => {
 		dispatch(loadRestaurants(data));
 	}
 };
+
+export const loadRestDetails = (id) => async (dispatch) => {
+	const res = await fetch(`/api/restaurants/${id}`);
+
+	if (res.ok) {
+		const data = await res.json();
+		dispatch(setDetails(data));
+	}
+};
+
 const initialState = { restaurants: {}, restaurantsDetails: {} };
 
-const restaurantReducer = (state = initialState, action) => {
+const restaurantsReducer = (state = initialState, action) => {
     let newState
     switch (action.type) {
         case LOAD_RESTAURANTS:
@@ -46,9 +61,12 @@ const restaurantReducer = (state = initialState, action) => {
             const all = { ...state };
             delete all[action.payload];
             return all;
+        case SET_DETAILS:
+			      return { ...state, restaurantsDetails: action.payload };
         default:
             return state;
     }
 }
 
-export default restaurantReducer;
+export default restaurantsReducer;
+

@@ -3,7 +3,7 @@ from sqlalchemy.sql import text
 from .seed_map import FOOD_NAMES, DESC, IMG_TYPES
 from random import randint
 
-NUM_MENU_ITEMS_PER_RES = 10
+NUM_MENU_ITEMS_PER_RES = 30
 
 
 def seed_menuitems():

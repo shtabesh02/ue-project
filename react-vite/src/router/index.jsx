@@ -3,6 +3,7 @@ import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import RestaurantIndex from '../components/RestaurantIndex'
 import Layout from './Layout';
+import RestDetails from "../components/RestDetailsPage";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
         path: "signup",
         element: <SignupFormPage />,
       },
+      {
+				path: "/restaurants/:id",
+				element: <RestDetails />,
+			},
     ],
   },
 ]);
