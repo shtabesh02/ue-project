@@ -58,6 +58,24 @@
     font-size: 20px;
 }
 
+.RestDetails__anchor {
+    text-decoration: none;
+    color: black;
+    transition: transform ease-out 500ms;
+}
+
+.RestDetails__anchor:hover {
+    transform: scale(1.2);
+}
+
+.RestDetails__anchor:has(+ :hover) {
+    transform: scale(1.1);
+}
+
+.RestDetails__anchor:hover + a {
+    transform: scale(1.1);
+}
+
 .RestDetails__details {
     width: 100%;
 }
