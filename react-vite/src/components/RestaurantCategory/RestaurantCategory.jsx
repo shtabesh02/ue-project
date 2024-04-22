@@ -1,21 +1,22 @@
-// import { useEffect } from 'react';
-import { useDispatch, useSelector} from "react-redux";
-import RestaurantItem from '../RestaurantItem';
-import { useEffect } from "react";
-// import { loadSpotsThunk } from '../../store/spots';
-// import SpotIndexItem from '../SpotIndexItem';
 import './RestaurantCategory.css';
 
 
 
 function RestaurantCategory({categories}) {
 
+    const categoriesimgMap = {
+        "Seafood" : "https://cn-geo1.uber.com/static/mobile-content/eats/cuisine-filters/v1/Seafood.png",
+        "Pizza" : "https://cn-geo1.uber.com/static/mobile-content/eats/cuisine-filters/v1/Pizza.png",
+        "Italian": "https://cn-geo1.uber.com/static/mobile-content/eats/cuisine-filters/v1/Italian.png",
+        "Bakery": "https://cn-geo1.uber.com/static/mobile-content/eats/cuisine-filters/Grocery.png"
+    }
+
     return (
         <section className="restaurant-categories">
             <div className="category-list">
                 {categories.map(category => (
                     <div key={category} className="category-card">
-                        <img src={"https://cn-geo1.uber.com/static/mobile-content/eats/cuisine-filters/Grocery.png"} alt={category} />
+                        <img src={categoriesimgMap[category] ?? categoriesimgMap["Bakery"]} alt={category} />
                         <h3>{category}</h3>
                     </div>
                 ))}

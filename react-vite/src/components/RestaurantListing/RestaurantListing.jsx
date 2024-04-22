@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import RestaurantItem from '../RestaurantItem';
 import './RestaurantListing.css';
-import { loadRestaurantsThunk } from '../../redux/restaurants';
+
 
 function RestaurantListing({ feature, allRestaurants }) {
     // const dispatch = useDispatch();

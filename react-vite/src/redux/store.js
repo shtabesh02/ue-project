@@ -7,8 +7,7 @@ import {
 import thunk from "redux-thunk";
 import { default as logger } from "redux-logger"; // Import logger synchronously
 import sessionReducer from "./session";
-import restaurantReducer from "./restautants";
-import RestaurantListing from "../components/RestaurantListing";
+import restaurantReducer from "./restaurants";
 
 // const rootReducer = combineReducers({
 //   session: sessionReducer,

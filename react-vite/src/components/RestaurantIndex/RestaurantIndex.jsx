@@ -1,5 +1,4 @@
 import { useDispatch, useSelector} from "react-redux";
-import RestaurantItem from '../RestaurantItem';
 import RestaurantCategories from '../RestaurantCategory'
 import RestaurantListing from '../RestaurantListing'
 import { useEffect } from "react";

@@ -1,6 +1,6 @@
 const LOAD_RESTAURANTS = 'restaurants/loadRestaurants';
 const ADD_RESTAURANT = 'restaurants/addRestaurant';
-const UPDATE_RESTAURANT = 'restaurants/updateRestaurant';
+// const UPDATE_RESTAURANT = 'restaurants/updateRestaurant';
 const DELETE_RESTAURANT = 'restaurants/deleteRestaurant';
 
 export const loadRestaurants = (restaurants) => ({
