@@ -19,7 +19,6 @@ export default function RestDetails() {
 	}, [dispatch, id]);
 
 	useEffect(() => {
-		console.log(restDetails?.menuitems);
 		const menuTypes = {};
 		restDetails?.menuitems?.forEach((ele) => {
 			if (!menuTypes[ele.type]) menuTypes[ele.type] = [ele];
