@@ -5,6 +5,7 @@ import {
 	combineReducers,
 } from "redux";
 import thunk from "redux-thunk";
+import { default as logger } from "redux-logger"; // Import logger synchronously
 import sessionReducer from "./session";
 import restaurantsReducer from "./restaurants";
 
