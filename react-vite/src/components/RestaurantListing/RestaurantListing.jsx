@@ -2,16 +2,16 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import RestaurantItem from '../RestaurantItem';
 import './RestaurantListing.css';
-import { loadRestaurantsThunk } from '../../redux/restautants';
+import { loadRestaurantsThunk } from '../../redux/restaurants';
 
-function RestaurantListing({ feature }) {
-    const dispatch = useDispatch();
-    const allRestaurants = useSelector(state => state.restaurants);
+function RestaurantListing({ feature, allRestaurants }) {
+    // const dispatch = useDispatch();
+    // const allRestaurants = useSelector(state => state.restaurants.restaurants);
 
-    useEffect(() => {
-        console.log('useEffect for RestaurantListing runs');
-        dispatch(loadRestaurantsThunk());
-    }, [dispatch]);
+    // useEffect(() => {
+    //     console.log('useEffect for RestaurantListing runs');
+    //     dispatch(loadRestaurantsThunk());
+    // }, [dispatch]);
 
     if (!Object.values(allRestaurants).length) return <div>No Restaurants</div>;
 

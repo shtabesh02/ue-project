@@ -4,12 +4,12 @@ import RestaurantCategories from '../RestaurantCategory'
 import RestaurantListing from '../RestaurantListing'
 import { useEffect } from "react";
 import './RestaurantIndex.css';
-import { loadRestaurantsThunk } from "../../redux/restautants";
+import { loadRestaurantsThunk } from "../../redux/restaurants";
 
 
 function RestaurantIndex() {
     const dispatch = useDispatch();
-    const allRestaurants = useSelector(state => state.restaurants);
+    const allRestaurants = useSelector(state => state.restaurants.restaurants);
 
     useEffect(() => {
         console.log("useEffect for RestaurantIndex runs ");
@@ -24,7 +24,7 @@ function RestaurantIndex() {
     return (
         <div className="index">
             <RestaurantCategories categories={distinctTypes}/>
-            <RestaurantListing feature = {feature}/>
+            <RestaurantListing feature = {feature} allRestaurants={allRestaurants}/>
         </div>
     );
 }

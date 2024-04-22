@@ -30,7 +30,7 @@ export const loadRestaurantsThunk = () => async (dispatch) => {
 		dispatch(loadRestaurants(data));
 	}
 };
-const initialState = {};
+const initialState = { restaurants: {}, restaurantsDetails: {} };
 
 const restaurantReducer = (state = initialState, action) => {
     let newState
