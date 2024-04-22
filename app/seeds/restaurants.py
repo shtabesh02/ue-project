@@ -2,7 +2,6 @@ from app.models import db, Restaurant, User, environment, SCHEMA
 from sqlalchemy.sql import text
 from .seed_map import REST_NAMES, DESC, IMG_TYPES
 from random import randint
-
 NUM_OF_RESTAURANTS = 50
 NUM_USERS = 5
 
@@ -43,6 +42,11 @@ def restaurant_builder():
         city=f"City {randint(1000, 9999)}",
         country=f"Country {randint(100, 999)}",
         img_url=f"https://foodish-api.com/images/{img['name']}/{img['name']}{randint(1, img['num'])}.jpg",
+        national_brand=randint(0, 1),
+        healthy_options=randint(0, 1),
+        under_2_delivery=randint(0, 1),
+        hot_spot=randint(0, 1),
+        in_a_rush=randint(0, 1),
     )
 
 

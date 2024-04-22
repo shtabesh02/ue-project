@@ -19,11 +19,14 @@ function RestaurantIndex() {
 
     // Get distinct types
     const distinctTypes = [...new Set(Object.values(allRestaurants).map(restaurant => restaurant.type))];
-    const feature = null
+    const features = ["national_brand", "healthy_options", "under_2_delivery","hot_spot","in_a_rush"]
     return (
         <div className="index">
             <RestaurantCategories categories={distinctTypes}/>
-            <RestaurantListing feature = {feature} allRestaurants={allRestaurants}/>
+            {features.map(feature => (
+                <RestaurantListing feature = {feature} allRestaurants={allRestaurants}/>
+            ))}
+            <RestaurantListing feature = {null} allRestaurants={allRestaurants}/>
         </div>
     );
 }

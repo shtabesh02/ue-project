@@ -1,20 +1,28 @@
-.restaurantByType {
-    display: flex;
-    flex-direction: column;
+.restaurant-list {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin-left: 140px;
+  margin-right: 140px;
 }
-.restaurantSection {
-    display: flex;
-    flex-direction: row;
-    margin: 70px;
-    flex-wrap: wrap;
-    justify-content: space-between;
 
+.feature-heading {
+  margin-bottom: 10px;
 }
+
+.restaurantSection.scrollable {
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevent items from wrapping to the next line */
+}
+
+.item-container {
+  width: 100%;
+}
+
 .item {
-    margin: 15px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  display: inline-block; /* Display items in a row */
+  margin-right: 10px;
 }
-
 
 
 @media (min-width: 480px) {
@@ -30,7 +38,7 @@
     }
   }
 
-  @media (min-width: 1200px) {
+  @media (min-width: 1000px) {
     .item {
       width: 25%; /* Four columns on screens wider than 1200px */
     }

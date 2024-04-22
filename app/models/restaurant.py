@@ -7,7 +7,7 @@ class Restaurant(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-        
+
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     name = db.Column(db.String)
@@ -17,6 +17,11 @@ class Restaurant(db.Model):
     city = db.Column(db.String)
     country = db.Column(db.String)
     img_url = db.Column(db.String)
+    national_brand = db.Column(db.Boolean, default=False)
+    healthy_options = db.Column(db.Boolean, default=False)
+    under_2_delivery = db.Column(db.Boolean, default=False)
+    hot_spot = db.Column(db.Boolean, default=False)
+    in_a_rush = db.Column(db.Boolean, default=False)
 
     #Many-to-One relationship with User
     user = db.relationship("User", back_populates="restaurants")
@@ -34,7 +39,12 @@ class Restaurant(db.Model):
             'address': self.address,
             'city': self.city,
             'country': self.country,
-            'img_url': self.img_url
+            'img_url': self.img_url,
+            'national_brand' : self.national_brand,
+            'healthy_options': self.healthy_options,
+            'under_2_delivery' : self.under_2_delivery,
+            'hot_spot' : self.hot_spot,
+            'in_a_rush': self.in_a_rush
         }
 
         if include_menu_items:

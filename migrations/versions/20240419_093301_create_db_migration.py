@@ -1,7 +1,7 @@
 """create db migration
 
 Revision ID: eedf2ec9a7e8
-Revises: 
+Revises:
 Create Date: 2024-04-19 09:33:01.179719
 
 """
@@ -43,6 +43,11 @@ def upgrade():
     sa.Column('city', sa.String(), nullable=True),
     sa.Column('country', sa.String(), nullable=True),
     sa.Column('img_url', sa.String(), nullable=True),
+    sa.Column('national_brand', sa.Boolean(), nullable=True),
+    sa.Column('healthy_options', sa.Boolean(), nullable=True),
+    sa.Column('under_2_delivery', sa.Boolean(), nullable=True),
+    sa.Column('hot_spot', sa.Boolean(), nullable=True),
+    sa.Column('in_a_rush', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
