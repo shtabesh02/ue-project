@@ -13,6 +13,13 @@
 
 }
 
+.filtered_items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: 140px;
+  margin-right: 140px;
+}
 
 .category-card {
   margin: 10px;
@@ -24,4 +31,27 @@
 
 .category-card h3 {
   text-align: center;
+}
+
+.filter {
+  display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.filtered_items button {
+  border-radius: 10px;
+  border: none;
+}
+
+.filtered_items button.selected {
+  background-color: darkgray;
+  color: #fff;
+}
+
+.filtered_lists {
+  margin-top: 60px;
+  margin-left: 140px;
+  margin-right: 140px;
 }
