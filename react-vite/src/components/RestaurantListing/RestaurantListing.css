@@ -10,18 +10,17 @@
   margin-bottom: 10px;
 }
 
-.restaurantSection.scrollable {
+
+.scrollable {
   overflow-x: auto; /* Enable horizontal scrolling */
   white-space: nowrap; /* Prevent items from wrapping to the next line */
 }
 
-.item-container {
-  width: 100%;
-}
 
-.item {
+
+.item-container .item {
   display: inline-block; /* Display items in a row */
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 
@@ -40,6 +39,6 @@
 
   @media (min-width: 1000px) {
     .item {
-      width: 25%; /* Four columns on screens wider than 1200px */
+      width: 23%; /* Four columns on screens wider than 1200px */
     }
   }
