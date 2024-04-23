@@ -9,10 +9,30 @@ export const loadRestaurants = (restaurants) => ({
 	payload: restaurants,
 });
 
+
+// Regular action for adding new restaurant
 export const addRestaurant = (restaurant) => ({
 	type: ADD_RESTAURANT,
 	payload: restaurant,
 });
+
+// Thunk action for adding new restaurant
+export const addRestaurantThunk = (newRestaurnt) => async (dispatch) => {
+	console.log('addRestaurantThunk()')
+
+	const response = await fetch('/api/restaurants/', {
+		method: 'POST',
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify(newRestaurnt)
+	});
+	console.log('response: ', response)
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(addRestaurant(data))
+	}
+}
+
+
 
 export const deleteRestaurant = (restaurantId) => ({
 	type: DELETE_RESTAURANT,
@@ -44,18 +64,24 @@ export const loadRestDetails = (id) => async (dispatch) => {
 	}
 };
 
-const initialState = { restaurants: {}, restaurantsDetails: {} };
+const initialState = {
+	restaurants: {},
+	restaurantsDetails: {}
+};
 
 const restaurantsReducer = (state = initialState, action) => {
-	let newState;
+	// let newState;
 	switch (action.type) {
 		case LOAD_RESTAURANTS:
 			newState = { ...state, ...action.payload };
 			return newState;
 		case ADD_RESTAURANT:
-			newState = { ...state };
-			newState[action.payload.id] = { ...action.payload };
-			return newState;
+			const newRstrnt = {...state.restaurants};
+			newRstrnt[action.payload.id] = action.payload;
+			return {
+				...state,
+				restaurants: newRstrnt,
+			}
 		case DELETE_RESTAURANT: {
 			const all = { ...state };
 			delete all[action.payload];

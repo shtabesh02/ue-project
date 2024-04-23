@@ -8,14 +8,14 @@ import { loadRestaurantsThunk } from "../../redux/restaurants";
 
 function RestaurantIndex() {
     const dispatch = useDispatch();
-    const allRestaurants = useSelector(state => state.restaurants.restaurants);
+    const allRestaurants = useSelector(state => Object.values(state.restaurants.restaurants));
 
     useEffect(() => {
         console.log("useEffect for RestaurantIndex runs ");
         dispatch(loadRestaurantsThunk());
     }, [dispatch]);
 
-    if (!Object.values(allRestaurants).length) return <div>No Restaurants</div>;
+    if (!allRestaurants.length) return <div>No Restaurants</div>;
 
     // Get distinct types
     const distinctTypes = [...new Set(Object.values(allRestaurants).map(restaurant => restaurant.type))];
@@ -24,7 +24,7 @@ function RestaurantIndex() {
         <div className="index">
             <RestaurantCategories categories={distinctTypes}/>
             {features.map(feature => (
-                <RestaurantListing feature = {feature} allRestaurants={allRestaurants}/>
+                <RestaurantListing feature = {feature} allRestaurants={allRestaurants} key={feature.id}/>
             ))}
             <RestaurantListing feature = {null} allRestaurants={allRestaurants}/>
         </div>
