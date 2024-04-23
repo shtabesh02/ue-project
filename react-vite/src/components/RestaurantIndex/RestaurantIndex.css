@@ -16,7 +16,9 @@
 .filtered_items {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin-left: 140px;
+  margin-right: 140px;
 }
 
 .category-card {
@@ -38,12 +40,18 @@
     justify-content: space-around;
 }
 
+.filtered_items button {
+  border-radius: 10px;
+  border: none;
+}
 
 .filtered_items button.selected {
-  background-color: #007bff;
+  background-color: darkgray;
   color: #fff;
 }
 
 .filtered_lists {
-  margin:20px;
+  margin-top: 60px;
+  margin-left: 140px;
+  margin-right: 140px;
 }

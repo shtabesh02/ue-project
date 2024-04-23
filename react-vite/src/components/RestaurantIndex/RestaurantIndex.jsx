@@ -11,6 +11,7 @@ function RestaurantIndex() {
     const dispatch = useDispatch();
     const allRestaurants = useSelector(state => state.restaurants.restaurants);
     const [filters, setFilters] = useState([]);
+    const [distinctTypes, setDistinctTypes] = useState([])
 
     const handleFilterUpdate = (feature) => {
         if(filters.includes(feature)) {
@@ -22,19 +23,19 @@ function RestaurantIndex() {
     }
 
     useEffect(() => {
-        console.log("useEffect for RestaurantIndex runs ");
         dispatch(loadRestaurantsThunk());
     }, [dispatch]);
 
-    let distinctTypes = []
     useEffect(() => {
         // Get distinct types
-        distinctTypes= [...new Set(Object.values(allRestaurants).map(restaurant => restaurant.type))];
+        setDistinctTypes([...new Set(Object.values(allRestaurants).map(restaurant => restaurant.type))]);
+        console.log("distinctTypes: ", distinctTypes)
     }, [allRestaurants])
 
     if (!Object.values(allRestaurants).length) return <div>No Restaurants</div>;
 
     const features = ["national_brand", "healthy_options", "under_2_delivery","hot_spot","in_a_rush"]
+
     return (
         <div className="index">
             <RestaurantCategories categories={distinctTypes}/>
