@@ -28,25 +28,6 @@ def item_details(id):
     }
 
 
-# moved to restaurant_routes.py
-
-# @menu_items_routes.route('', methods=['POST'])
-# @login_required
-# def add_new_items():
-#     menu_item = MenuItemForm()
-#     data = request.json
-#     print('testing1: ', data['food_name'])
-#     print('testing2: ', data)
-#     menu_item['csrf_token'].data = request.cookies['csrf_token']
-#     if menu_item.validate_on_submit():
-#         new_item = MenuItem(restaurant_id=1,food_name=data['food_name'], description=data['description'], price=data['price'], img_url=data['img_url'] )
-#         print('until here, ok!')
-#         db.session.add(new_item)
-#         db.session.commit()
-#         return jsonify(message='Item added successfully.')
-#     return jsonify(message="couldn't addd new item")
-
-
 # The bellow routes are defined by Chris Update/Delete
 @menu_items_routes.route("/<int:id>", methods=["PUT"])
 @login_required

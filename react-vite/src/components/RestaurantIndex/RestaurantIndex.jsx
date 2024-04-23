@@ -72,3 +72,4 @@ function RestaurantIndex() {
 }
 
 export default RestaurantIndex;
+
