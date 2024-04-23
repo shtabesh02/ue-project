@@ -26,12 +26,14 @@ function RestaurantIndex() {
         dispatch(loadRestaurantsThunk());
     }, [dispatch]);
 
-
+    let distinctTypes = []
+    useEffect(() => {
+        // Get distinct types
+        distinctTypes= [...new Set(Object.values(allRestaurants).map(restaurant => restaurant.type))];
+    }, [allRestaurants])
 
     if (!Object.values(allRestaurants).length) return <div>No Restaurants</div>;
 
-    // Get distinct types
-    const distinctTypes = [...new Set(Object.values(allRestaurants).map(restaurant => restaurant.type))];
     const features = ["national_brand", "healthy_options", "under_2_delivery","hot_spot","in_a_rush"]
     return (
         <div className="index">
