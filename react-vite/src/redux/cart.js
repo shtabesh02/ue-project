@@ -1,5 +1,3 @@
-import { useActionData } from "react-router-dom";
-
 const MAKE_TRANSACTION = "cart/makeTransaction";
 const ADD_CART_ITEM = "cart/add";
 const UPDATE_CART_ITEM = "cart/update";
