@@ -54,7 +54,9 @@ function ProfileButton() {
                 <span><i className="fa-solid fa-user fa-2x"></i></span>
                 <div>
                   <div>{user.username}</div>
-                  <div>Manage Account</div>
+                  <NavLink to={`/myaccountpage`} className="my-account">
+                    <div>Manage Account</div>
+                  </NavLink>
                 </div>
               </li>
               <li>Orders</li>
