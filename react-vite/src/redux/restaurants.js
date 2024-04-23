@@ -73,7 +73,7 @@ const restaurantsReducer = (state = initialState, action) => {
 	// let newState;
 	switch (action.type) {
 		case LOAD_RESTAURANTS:
-			newState = { ...state, ...action.payload };
+			const newState = { ...state, ...action.payload };
 			return newState;
 		case ADD_RESTAURANT:
 			const newRstrnt = {...state.restaurants};
