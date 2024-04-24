@@ -44,16 +44,16 @@ export default function RestDetails() {
 			<div className="RestDetails">
 				<MenuNav types={types} />
 				<div className="RestDetails__details">
-					{types.map((item) => {
-						return (
-							<div key={item[0].type} id={item[0].type}>
-								<h2>{item[0].type}</h2>
-								<div className="RestDetails__cardContainer">
-									<MenuItemCard item={item} />
-								</div>
+					{types.map((item) => (
+						<div key={item[0].type} id={item[0].type}>
+							<h2>{item[0].type}</h2>
+							<div className="RestDetails__cardContainer">
+								{item.map((ele) => (
+									<MenuItemCard key={ele.id} item={ele} />
+								))}
 							</div>
-						);
-					})}
+						</div>
+					))}
 				</div>
 			</div>
 		</>
