@@ -1,16 +1,21 @@
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 export default function ShoppingCart() {
-	const cartItems = useSelector((state) => state.cart.items);
-	useEffect(() => {
-		console.log(cartItems);
-	}, [cartItems]);
+	const cart = useSelector((state) => state.cart);
+
 	return (
-		<ul>
-			{cartItems.map((item, i) => (
-				<li key={i}>{item.food_name}</li>
-			))}
-		</ul>
+		<>
+			<div>
+				{Object.entries(cart.items).map(([key, value]) => {
+					return (
+						<div key={key}>
+							{value.count} x {key}
+						</div>
+					);
+				})}
+			</div>
+			<p>Total Items: {cart.count}</p>
+			<h2>Sub Total: {cart.subTotal}</h2>
+		</>
 	);
 }
