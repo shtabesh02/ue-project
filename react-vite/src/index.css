@@ -1,5 +1,14 @@
 /* TODO: Add sitewide styles */
+:root {
+	--main-bg-color: rgb(243, 243, 243);
+	--white: #FFFFFF;
+}
 
 html {
-    scroll-behavior: smooth;
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+	background-color: var(--main-bg-color);
 }

@@ -4,6 +4,9 @@
 
 .nav_bar{
   background-color: rgb(87, 112, 134);
+  position: sticky;
+  top: 0px;
+  z-index: 100;
 }
 .nav_bar .h_menu{
   list-style: none;
@@ -23,6 +26,10 @@
   border-radius: 30px;
   padding: 10px;
 }
+.nav_bar .login_signup div {
+  display: flex;
+  justify-content: space-evenly;
+}
 
 
 .nav_bar > ul > .uber_eats_menu span{
@@ -35,4 +42,33 @@
 }
 .uber_eats_menu > span{
   cursor: pointer;
+}
+
+.CartButton {
+  position: relative;
+}
+.CartButton div {
+  box-sizing: content-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  font-size: small;
+}
+.Navigation__cart {
+  display: flex;
+  width: 30px;
+  justify-content: center;
+  align-items: center;
+}
+.CartButton__alert {
+  position: absolute;
+  background-color: red;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+
+  font-weight: bolder;
+  top: -15px;
+  right: -15px;
 }

@@ -47,7 +47,7 @@
 
 .RestDetails__nav  {
     position: sticky;
-    top: 20px;
+    top: 120px;
     align-self: flex-start;
     height: auto;
 
@@ -107,6 +107,7 @@
     border-radius: 10px;
     border: solid lightgrey 1px;
     position: relative;
+    background-color: var(--white);
 }
 
 .RestDetails__menuImg {
@@ -125,7 +126,6 @@
     padding: 15px;
     color: grey;
     background: linear-gradient(white 90%, lightgrey), rgba(0, 0, 0, 0);
-    box-shadow: inset lightgrey 0 0 5px;
 }
 
 .RestDetails__menuCardDetails strong {
