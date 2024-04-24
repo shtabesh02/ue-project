@@ -1,15 +1,24 @@
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import SideBar from './SideBar'
+import AccountInfo from './AccountInfo'
+import MyRestaurants from './MyRestaurants'
 import './AccountPage.css'
-import { useDispatch } from 'react-redux';
-import { addRestaurantThunk } from '../../redux/restaurants';
 
 const AccountPage = () => {
+    const [selectedTab, setSelectedTab] = useState('account');
+
+    const handleTabSelect = (tab) => {
+        setSelectedTab(tab)
+    }
 
     return (
+        <>
+        <div><SideBar handleTabSelect={handleTabSelect}/></div>
         <div>
-            Account page
+           {selectedTab==='account' && <AccountInfo />}
+           {selectedTab==='myRestaurants' && <MyRestaurants />}
         </div>
+        </>
     )
 
 }

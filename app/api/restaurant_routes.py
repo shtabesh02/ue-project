@@ -29,6 +29,17 @@ def detail_of_a_restaurant(id):
     )
     return restaurant.to_dict(include_menu_items=True)
 
+
+#Get all Restaurants owned by the Current User
+@restaurant_routes.route('/current')
+def owner_restaurants():
+    restaurants = (
+        Restaurant.query
+        .filter(Restaurant.user_id == current_user.get_id())
+    )
+    return {"restaurants": {r.id: r.to_dict(include_menu_items=True) for r in restaurants}}
+
+
 @restaurant_routes.route('/', methods=['POST'])
 @login_required
 def add_restaurant():

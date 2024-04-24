@@ -4,6 +4,7 @@ const ADD_RESTAURANT = "restaurants/addRestaurant";
 const DELETE_RESTAURANT = "restaurants/deleteRestaurant";
 const SET_DETAILS = "restaurants/setDetails";
 
+
 export const loadRestaurants = (restaurants) => ({
 	type: LOAD_RESTAURANTS,
 	payload: restaurants,
@@ -63,6 +64,32 @@ export const loadRestDetails = (id) => async (dispatch) => {
 		dispatch(setDetails(data));
 	}
 };
+
+export const loadSessionRestaurantsThunk = () => async (dispatch) => {
+    const response = await fetch('/api/restaurants/current');
+    if (response.ok) {
+		const data = await response.json();
+		// console.log("res for current in backend: ", r)
+		if (data.errors) {
+			return data.errors;
+		}
+		dispatch(loadRestaurants(data));
+	}
+};
+
+
+export const updateRestaurantThunk = (payload, id) => async (dispatch) => {
+    const response = await fetch(`/api/restaurants/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (response.ok) {
+        const data = await response.json();
+        dispatch(addRestaurant(data));
+        return data;
+      }
+}
 
 const initialState = {
 	restaurants: {},

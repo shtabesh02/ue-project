@@ -7,6 +7,8 @@ import Layout from "./Layout";
 import RestDetails from "../components/RestDetailsPage";
 import AddYourRestaurant from "../components/AddYourRestaurant/AddYourRestaurant";
 import ShoppingCart from "../components/ShoppingCart";
+import EditRestaurantForm from "../components/EditRestaurantForm"
+
 
 export const router = createBrowserRouter([
 	{
@@ -40,6 +42,10 @@ export const router = createBrowserRouter([
 				path: "/myaccountpage",
 				element: <AccountPage />
 			},
+			{
+				path: "/restaurants/:restaurantId/edit",
+				element: <EditRestaurantForm />
+			}
 		],
 	},
 ]);
