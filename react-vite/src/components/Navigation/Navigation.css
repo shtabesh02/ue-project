@@ -4,6 +4,9 @@
 
 .nav_bar{
   background-color: rgb(87, 112, 134);
+  position: sticky;
+  top: 0px;
+  z-index: 100;
 }
 .nav_bar .h_menu{
   list-style: none;

@@ -44,7 +44,9 @@ export default function MenuItemCard({ item }) {
 				className="RestDetails__addButton"
 				onClick={addItem(item)}
 			>
-				{visible ? <div>- 0 +</div> : <div onClick={toggle}>+</div>}
+				{/* { to be added } */}
+				{/* {visible ? <div>- 0 +</div> : <div onClick={toggle}>+</div>} */}
+				<div>+</div>
 			</div>
 		</div>
 	);
