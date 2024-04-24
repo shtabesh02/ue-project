@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import './EditRestaurantForm.css'
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import './EditRestaurantForm.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateRestaurantThunk, loadRestDetails } from '../../redux/restaurants';
 
@@ -59,7 +59,11 @@ const EditRestaurantForm = () => {
             hot_spot,
             in_a_rush
         };
-        await dispatch(updateRestaurantThunk(updatedRestaurant, restaurantId));
+
+        const response = await dispatch(updateRestaurantThunk(updatedRestaurant, restaurantId));
+        if (response) {
+            window.location.href = `/restaurants/${restaurantId}`;
+        }
     };
 
     if (!restaurant) {
@@ -69,7 +73,8 @@ const EditRestaurantForm = () => {
     return (
         <div className='adding-restaurant-container'>
             <div className="getstarted">
-            <form className="newRestaurantForm" onSubmit={editRestaurant}>
+                <form className="newRestaurantForm" onSubmit={editRestaurant}>
+                <h2>Update Restaurant</h2>
                     <div>
                         <label htmlFor="name">Restaurant Name</label>
                         <input type="text" value={name} onChange={e => setName(e.target.value)} />
@@ -121,13 +126,12 @@ const EditRestaurantForm = () => {
                         </div>
                     </div>
                     <div className='sbmtbtn'>
-                        <button>Update</button>
+                        <button type="submit">Update</button>
                     </div>
-
                 </form>
-                </div>
+            </div>
         </div>
-    )
-}
+    );
+};
 
-export default EditRestaurantForm
+export default EditRestaurantForm;

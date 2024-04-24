@@ -15,15 +15,14 @@ const MyRestaurants = () => {
         <div className="myRestaurants">
             {Object.values(sessionRestaurants)
                         .map(restaurant => (
-                            <div>
-                            <div className="item" key={restaurant.id}>
+
+                            <div className="myitem" key={restaurant.id}>
                                 <RestaurantItem restaurantId={restaurant.id} restaurant={restaurant} />
-                            </div>
-                            <div className="updatemanage-button">
+                                <div className="updatemanage-button">
                                 <NavLink to={`/restaurants/${restaurant.id}/edit`}>
                                 Update
                                 </NavLink>
-                            </div>
+                                </div>
                             {/* <div className="deletemanage-button">
                                 <OpenModalMenuItem
                                 itemText="Delete"
