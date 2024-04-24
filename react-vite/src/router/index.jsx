@@ -4,6 +4,7 @@ import SignupFormPage from "../components/SignupFormPage";
 import RestaurantIndex from "../components/RestaurantIndex";
 import Layout from "./Layout";
 import RestDetails from "../components/RestDetailsPage";
+import AddYourRestaurant from "../components/AddYourRestaurant/AddYourRestaurant";
 import ShoppingCart from "../components/ShoppingCart";
 
 export const router = createBrowserRouter([
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
 			{
 				path: "/restaurants/:id",
 				element: <RestDetails />,
+			},
+			{
+				path: "/restaurants/addyourrestaurant",
+				element: <AddYourRestaurant />,
 			},
 			{
 				path: "/cart",

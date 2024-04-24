@@ -32,12 +32,14 @@ def detail_of_a_restaurant(id):
 @restaurant_routes.route('/', methods=['POST'])
 @login_required
 def add_restaurant():
+    print('add_restaurant()')
     """
     Create a new restaurant.
     """
     #dict format from front-end
     # data = request.json
-    # print(request.cookies['csrf_token'])
+    print('csrf_token: ', request.cookies['csrf_token'])
+
     form = RestaurantForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -45,18 +47,23 @@ def add_restaurant():
         new_restaurant = Restaurant(
             user_id = current_user.id,
             name = form.data["name"],
+            type = form.data["type"],
             description = form.data["description"],
             address = form.data["address"],
             city = form.data["city"],
             country = form.data["country"],
-            img_url = form.data["img_url"]
+            img_url = form.data["img_url"],
+            national_brand = form.data["national_brand"],
+            healthy_options = form.data["healthy_options"],
+            under_2_delivery = form.data["under_2_delivery"],
+            hot_spot = form.data["hot_spot"],
+            in_a_rush = form.data["in_a_rush"]
         )
 
         db.session.add(new_restaurant)
         db.session.commit()
-
         return new_restaurant.to_dict()
-    return form.errors
+    return form.errors, 401
 
 
 # Adding a new Item to a restaurant by ID

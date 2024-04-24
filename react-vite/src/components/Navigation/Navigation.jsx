@@ -19,7 +19,6 @@ function Navigation() {
               <NavLink to={'/'} style={{ textDecoration: 'none' }}>Uber Eats</NavLink>
             </span>
           </li>
-  
           <li className="login_signup">
             <div>
               <span>

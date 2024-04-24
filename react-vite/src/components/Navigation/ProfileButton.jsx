@@ -84,7 +84,7 @@ function ProfileButton() {
               <li>
                 <div className="addnewrestaurant">
                   <div><NavLink to={''} style={{ textDecoration: 'none' }}>Create a business account</NavLink></div>
-                  <div><NavLink to={''} style={{ textDecoration: 'none' }}>Add your restaurant</NavLink></div>
+                  <div><NavLink to={'restaurants/addyourrestaurant'} style={{ textDecoration: 'none' }}>Add your restaurant</NavLink></div>
                   <div><NavLink to={''} style={{ textDecoration: 'none' }}>Sign up to deliver</NavLink></div>
                 </div>
               </li>
@@ -120,7 +120,7 @@ function ProfileButton() {
 
               <li>
                 <div className="addnewrestaurant">
-                  <span><NavLink to={''} style={{ textDecoration: 'none' }}>Add your restaurant</NavLink></span>
+                  <span><NavLink to={'restaurants/addyourrestaurant'} style={{ textDecoration: 'none' }}>Add your restaurant</NavLink></span>
                   <span><NavLink to={''} style={{ textDecoration: 'none' }}>Sign up to deliver</NavLink></span>
                   <span><NavLink to={''} style={{ textDecoration: 'none' }}>Create a business account</NavLink></span>
                 </div>
