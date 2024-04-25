@@ -11,6 +11,12 @@ import {
   import cartReducer from "./cart";
 
 
+const rootReducer = combineReducers({
+	session: sessionReducer,
+	restaurants: restaurantsReducer,
+	menuitems: menuitemsReducer,
+});
+
   const rootReducer = combineReducers({
     session: sessionReducer,
     restaurants: restaurantsReducer,
