@@ -29,7 +29,7 @@ export const thunkPostTransaction = (items) => async (dispatch) => {
 	if (res.ok) {
 		const data = await res.json();
 		dispatch(deleteCart());
-		alert("Order Made!")
+		alert("Order Made!");
 		return data;
 	}
 };
@@ -70,6 +70,9 @@ export default function cartReducer(state = initialState, action) {
 				delete newObj.items[action.payload.id];
 			}
 			newObj.count--;
+			if (!newObj.count) {
+				newObj.restaurantId = null;
+			}
 			newObj.subTotal -= action.payload.price;
 			return newObj;
 		}
