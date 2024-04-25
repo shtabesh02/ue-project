@@ -17,23 +17,23 @@ const MyRestaurants = () => {
       }
 
     return (
-        <div className="myRestaurants">
-            {Object.values(sessionRestaurants)
-                        .map(restaurant => (
-
-                            <div className="myitem" key={restaurant.id}>
-                                <RestaurantItem restaurantId={restaurant.id} restaurant={restaurant} />
-                                <div className="updatemanage-button">
-                                <NavLink to={`/restaurants/${restaurant.id}/edit`}>
-                                Update
-                                </NavLink>
+        <div className="myrestaurant-container">
+            <div className="myrestaurant-header">My Restaurants</div>
+            <div className="myRestaurants">
+                {Object.values(sessionRestaurants)
+                            .map(restaurant => (
+                                <div className="myitem" key={restaurant.id}>
+                                    <RestaurantItem restaurantId={restaurant.id} restaurant={restaurant} />
+                                <div className="delete-update-button">
+                                    <NavLink className="button-link" to={`/restaurants/${restaurant.id}/edit`  }>
+                                    Update
+                                    </NavLink>
+                                    <button  className="button-remove" onClick={() => handleRemoveRestaurant(restaurant.id)}>Remove</button>
                                 </div>
-                            <div className="delete-button">
-                                <button onClick={() => handleRemoveRestaurant(restaurant.id)}>Remove</button>
                             </div>
-                        </div>
-                        ))
-                    }
+                            ))
+                        }
+            </div>
         </div>
     )
 }
