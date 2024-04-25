@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadRestDetails } from "../../redux/restaurants";
 import MenuNav from "./MenuNav";
@@ -13,7 +13,7 @@ export default function RestDetails() {
 		(state) => state.restaurants.restaurantsDetails,
 	);
 	const [types, setTypes] = useState([]);
-
+	const navigate = useNavigate();
 	useEffect(() => {
 		dispatch(loadRestDetails(id));
 	}, [dispatch, id]);
@@ -31,6 +31,9 @@ export default function RestDetails() {
 		<>
 			<div className="RestDetails__imgContainer">
 				<img className="RestDetails__img" src={restDetails?.img_url} />
+			</div>
+			<div className="manage_menu_items">
+				<button onClick={()=> navigate(`/restaurants/${id}/menu-items`)}>Mange menu of the restaurant</button>
 			</div>
 			<div className="RestDetails__header">
 				<h1>

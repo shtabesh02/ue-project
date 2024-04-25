@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import './AddNewItem.css';
 import { additemtoDB } from '../../redux/menu_items';
+import { useNavigate, useParams } from 'react-router-dom';
 const AddNewItem = () => {
     const [type, setType] = useState('');
     const [food_name, setFood_name] = useState('')
@@ -10,6 +11,9 @@ const AddNewItem = () => {
     const [img_url, setImg_url] = useState('');
 
     const dispatch = useDispatch();
+    const {id} = useParams();
+    const navigate = useNavigate();
+
     const addnewitem = async (e) => {
         e.preventDefault();
         const newitem = {
@@ -20,8 +24,8 @@ const AddNewItem = () => {
             img_url,
         }
 
-        await dispatch(additemtoDB(newitem, 6))
-        console.log('additemtoDB called...')
+        await dispatch(additemtoDB(newitem, id))
+        navigate(`/restaurants/${id}/menu-items`)
     }
 
     return (

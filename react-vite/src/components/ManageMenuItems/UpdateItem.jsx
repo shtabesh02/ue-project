@@ -30,6 +30,7 @@ const UpdateItem = () => {
             img_url,
         }
         await dispatch(updateitemtoDB(newitem, selecteditem))
+        alert('Item updated successfully...')
     }
 
     useEffect(()=> {

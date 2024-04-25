@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteitemfromDB, loaditemsfromDB } from '../../redux/menu_items';
 import './ManageMenuItems.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 const ManageMenuItems = () => {
   // list of menu items
 
@@ -10,12 +10,15 @@ const ManageMenuItems = () => {
   const current_user = useSelector(state => state.session.user.username);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const {id} = useParams();
+
   const menu_items = []
   for (let key in menu_itemss) {
     menu_items.push(menu_itemss[key])
   }
 
-  console.log('menu_items array: ', menu_items)
+  // console.log('menu_items array: ', menu_items)
 
   useEffect(() => {
     dispatch(loaditemsfromDB(6))
@@ -29,7 +32,7 @@ const ManageMenuItems = () => {
   }
 
   const addnewitem = () => {
-    navigate('/restaurants/addnewitem')
+    navigate(`/restaurants/${id}/addnewitem`)
   }
 
   const updateitem = (item_id) => {
@@ -37,6 +40,7 @@ const ManageMenuItems = () => {
   }
   const deleteitem = (id) => {
     dispatch(deleteitemfromDB(id))
+    alert('item deleted successfully...')
   }
   return (
     <div className="additemcontainer">
