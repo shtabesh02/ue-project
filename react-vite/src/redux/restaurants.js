@@ -4,12 +4,10 @@ const ADD_RESTAURANT = "restaurants/addRestaurant";
 const DELETE_RESTAURANT = "restaurants/deleteRestaurant";
 const SET_DETAILS = "restaurants/setDetails";
 
-
 export const loadRestaurants = (restaurants) => ({
 	type: LOAD_RESTAURANTS,
 	payload: restaurants,
 });
-
 
 // Regular action for adding new restaurant
 export const addRestaurant = (restaurant) => ({
@@ -19,21 +17,19 @@ export const addRestaurant = (restaurant) => ({
 
 // Thunk action for adding new restaurant
 export const addRestaurantThunk = (newRestaurnt) => async (dispatch) => {
-	console.log('addRestaurantThunk()')
+	console.log("addRestaurantThunk()");
 
-	const response = await fetch('/api/restaurants/', {
-		method: 'POST',
+	const response = await fetch("/api/restaurants/", {
+		method: "POST",
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(newRestaurnt)
+		body: JSON.stringify(newRestaurnt),
 	});
-	console.log('response: ', response)
+	console.log("response: ", response);
 	if (response.ok) {
 		const data = await response.json();
-		dispatch(addRestaurant(data))
+		dispatch(addRestaurant(data));
 	}
-}
-
-
+};
 
 export const deleteRestaurant = (restaurantId) => ({
 	type: DELETE_RESTAURANT,
@@ -66,8 +62,8 @@ export const loadRestDetails = (id) => async (dispatch) => {
 };
 
 export const loadSessionRestaurantsThunk = () => async (dispatch) => {
-    const response = await fetch('/api/restaurants/current');
-    if (response.ok) {
+	const response = await fetch("/api/restaurants/current");
+	if (response.ok) {
 		const data = await response.json();
 		// console.log("res for current in backend: ", r)
 		if (data.errors) {
@@ -77,53 +73,54 @@ export const loadSessionRestaurantsThunk = () => async (dispatch) => {
 	}
 };
 
-
 export const updateRestaurantThunk = (payload, id) => async (dispatch) => {
-    const response = await fetch(`/api/restaurants/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      if (response.ok) {
-        const data = await response.json();
-        dispatch(addRestaurant(data));
-        return data;
-      }
-}
+	const response = await fetch(`/api/restaurants/${id}`, {
+		method: "PUT",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify(payload),
+	});
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(addRestaurant(data));
+		return data;
+	}
+};
 
 export const deleteRestaurantThunk = (id) => async (dispatch) => {
-    const response = await fetch(`/api/restaurants/${id}`, {
-      method: "DELETE",
-    });
+	const response = await fetch(`/api/restaurants/${id}`, {
+		method: "DELETE",
+	});
 
-    if (response.ok) {
-      const data = await response.json();
-      dispatch(deleteRestaurant(id));
-      return data;
-    } else {
-      const error = await response.json();
-      return error;
-    }
-  };
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(deleteRestaurant(id));
+		return data;
+	} else {
+		const error = await response.json();
+		return error;
+	}
+};
 
 const initialState = {
 	restaurants: {},
-	restaurantsDetails: {}
+	restaurantsDetails: {},
 };
 
 const restaurantsReducer = (state = initialState, action) => {
 	// let newState;
 	switch (action.type) {
-		case LOAD_RESTAURANTS:
+		case LOAD_RESTAURANTS: {
 			const newState = { ...state, ...action.payload };
 			return newState;
-		case ADD_RESTAURANT:
-			const newRstrnt = {...state.restaurants};
+		}
+		case ADD_RESTAURANT: {
+			const newRstrnt = { ...state.restaurants };
 			newRstrnt[action.payload.id] = action.payload;
 			return {
 				...state,
 				restaurants: newRstrnt,
-			}
+			};
+		}
 		case DELETE_RESTAURANT: {
 			const updatedRestaurants = { ...state.restaurants };
 			delete updatedRestaurants[action.payload];
