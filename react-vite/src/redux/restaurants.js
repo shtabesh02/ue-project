@@ -125,9 +125,9 @@ const restaurantsReducer = (state = initialState, action) => {
 				restaurants: newRstrnt,
 			}
 		case DELETE_RESTAURANT: {
-			const all = { ...state };
-			delete all["restaurants"][action.payload];
-			return all;
+			const updatedRestaurants = { ...state.restaurants };
+			delete updatedRestaurants[action.payload];
+			return { ...state, restaurants: updatedRestaurants };
 		}
 		case SET_DETAILS:
 			return { ...state, restaurantsDetails: action.payload };

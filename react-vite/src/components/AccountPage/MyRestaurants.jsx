@@ -11,6 +11,7 @@ const MyRestaurants = () => {
         dispatch(loadSessionRestaurantsThunk());
     }, [dispatch]);
 
+
     const handleRemoveRestaurant = (restaurantId) => {
         dispatch(deleteRestaurantThunk(restaurantId))
       }
