@@ -40,8 +40,8 @@ function RestaurantIndex() {
             <RestaurantCategories categories={distinctTypes}/>
             <div className="filtered_items">
                 {features.map(feature => (
-                    <button  key={feature} className={filters.includes(feature) ? "selected" : ""}
-                    onClick={()=> handleFilterUpdate(feature)}>{feature}
+                    <button key={feature.id} className={filters.includes(feature) ? "selected" : ""}
+                    onClick={()=> handleFilterUpdate(feature)} >{feature}
                     </button>
                 ))}
             </div>
