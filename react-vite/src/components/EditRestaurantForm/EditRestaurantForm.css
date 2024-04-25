@@ -114,3 +114,7 @@
 .newRestaurantForm button:hover {
     background-color: #0088cc;
 }
+
+.edit_restaurants_errors {
+    color: red
+}

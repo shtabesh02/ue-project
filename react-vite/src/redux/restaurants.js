@@ -86,9 +86,12 @@ export const updateRestaurantThunk = (payload, id) => async (dispatch) => {
       });
       if (response.ok) {
         const data = await response.json();
-        dispatch(addRestaurant(data));
-        return data;
-      }
+		if (data && Object.keys(data).some(key => Array.isArray(data[key]))) {
+			return { "form": "Something went wrong. Please try again" }
+		} else {
+        	dispatch(addRestaurant(data));
+		}
+	  }
 }
 
 export const deleteRestaurantThunk = (id) => async (dispatch) => {
