@@ -3,7 +3,7 @@ const LOAD_MENUITEMS = 'restaurants/items'
 const LOAD_MENUITEM = 'restaurants/item'
 const DELETE_MENUITEMS = 'menuitemsdelete'
 const ADD_MENUITEMS = 'menuitemsadd'
-const UPDATE_MENUITEM = 'menuitemupdate'
+
 
 // regular action creator to load menu-items
 const loaditems = (payload) => {
@@ -15,12 +15,12 @@ const loaditems = (payload) => {
 // thunk action creator to load menu-items from database
 export const loaditemsfromDB = (restaurant_id) => async (dispatch) => {
     const response = await fetch(`/api/restaurants/${restaurant_id}/menu-items`);
-    console.log('response: ', response)
+    // console.log('response: ', response)
     if(response.ok){
-        console.log('Items loaded from db to thunk.')
+        // console.log('Items loaded from db to thunk.')
         const data = await response.json();
         
-        console.log('response from db: ', data)
+        // console.log('response from db: ', data)
         dispatch(loaditems(data))
     }
 }
@@ -43,7 +43,7 @@ export const deleteitemfromDB = (item_id) => async (dispatch) => {
     if(response.ok){
         const data = await response.json();
         dispatch(deleteitem(data.id));
-        console.log('deleted successfully...')
+        // console.log('deleted successfully...')
     }
 }
 
@@ -59,14 +59,14 @@ const additem = (newItem) => {
 }
 // thunk action creator to add a new item
 export const additemtoDB = (new_item, restaurant_id) => async (dispatch) => {
-    console.log('starting to fetch...')
+    // console.log('starting to fetch...')
     const response = await fetch(`/api/restaurants/${restaurant_id}/menu-items/`, {
         method: 'POST',
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(new_item)
     })
     if(response.ok){
-        console.log('New item added...')
+        // console.log('New item added...')
         const data = await response.json();
         dispatch(additem(data))
     }
@@ -84,10 +84,10 @@ const loaditem = (menuitem) => {
 // thunk action creator to load a menu-item by its ID
 export const loaditemfromDB = (id) => async (dispatch) => {
     const response = await fetch(`/api/menu-items/${id}/`);
-    console.log('item loaded...', response)
+    // console.log('item loaded...', response)
     if(response.ok){
         const data = await response.json();
-        console.log('item jsoned: ', data)
+        // console.log('item jsoned: ', data)
         dispatch(loaditem(data));
     }
 }
@@ -103,7 +103,7 @@ export const updateitemtoDB = (updateditem, item_id) => async (dispatch) => {
         body: JSON.stringify(updateditem)
     })
     if(response.ok){
-        console.log('item updated')
+        // console.log('item updated')
         const data = response.json();
         dispatch(additem(data))
     }
@@ -114,18 +114,27 @@ export const updateitemtoDB = (updateditem, item_id) => async (dispatch) => {
 // menu items reducer
 const initialState = {}
 const menuitemsReducer = (state = initialState, action) => {
+    let newState = {}
     switch(action.type){
         case LOAD_MENUITEMS:
-            const newItem = {...state, ...action.payload}
-            return newItem;
+            // const newItem = {...state, ...action.payload}
+            // return newItem;
+            newState = {...state, ...action.payload}
+            return newState
         case DELETE_MENUITEMS:
-            const currentState = {...state }
-            delete currentState[action.item_id]
-            return currentState
+            // const currentState = {...state }
+            // delete currentState[action.item_id]
+            // return currentState
+            newState = {...state}
+            delete newState[action.item_id]
+            return newState
         case ADD_MENUITEMS:
-            const theCurrentState = {...state}
-            theCurrentState[action.newItem.id] = action.newItem
-            return theCurrentState
+            // const theCurrentState = {...state}
+            // theCurrentState[action.newItem.id] = action.newItem
+            // return theCurrentState
+            newState = {...state}
+            newState[action.newItem.id] = action.newItem
+            return newState
         case LOAD_MENUITEM:
             return {...state, [action.menuitem.id]: action.menuitem}
         default:
