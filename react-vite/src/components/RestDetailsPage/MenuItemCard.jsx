@@ -1,13 +1,21 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addCartItem } from "../../redux/cart";
 import { useEffect, useRef, useState } from "react";
 
-export default function MenuItemCard({ item }) {
+export default function MenuItemCard({ item, restaurantId }) {
+	const stateRestId = useSelector((state) => state.cart.restaurantId);
 	const dispatch = useDispatch();
-	const addItem = (menuitem) => () => dispatch(addCartItem(menuitem));
 
 	const [visible, setVisible] = useState(false);
 	const buttonRef = useRef(null);
+
+	const addItem = (menuitem) => () => {
+		if (stateRestId === null || restaurantId === stateRestId) {
+			dispatch(addCartItem(menuitem));
+		} else {
+			alert("To add items from a different restaurant, delete items currently in your cart!");
+		}
+	};
 
 	const toggle = (e) => {
 		e.stopPropagation();
@@ -31,9 +39,9 @@ export default function MenuItemCard({ item }) {
 		<div className="RestDetails__menuCard">
 			<div className="RestDetails__menuCardDetails">
 				<div>
-					<strong>{item.food_name}</strong>
-					<p>${item.price}</p>
-					<p>{item.description}</p>
+					<strong className="bold">{item.food_name}</strong>
+					<p className="grey">${item.price}</p>
+					<p className="grey">{item.description}</p>
 				</div>
 			</div>
 			<div className="RestDetails__menuImgContainer">

@@ -36,10 +36,10 @@ export default function RestDetails() {
 				<h1>
 					{restDetails?.name} ({restDetails?.address})
 				</h1>
-				<p>
+				<p className="grey">
 					{restDetails?.city}, {restDetails?.country}
 				</p>
-				<p>{restDetails?.description}</p>
+				<p className="grey">{restDetails?.description}</p>
 			</div>
 			<div className="RestDetails">
 				<MenuNav types={types} />
@@ -49,7 +49,11 @@ export default function RestDetails() {
 							<h2>{item[0].type}</h2>
 							<div className="RestDetails__cardContainer">
 								{item.map((ele) => (
-									<MenuItemCard key={ele.id} item={ele} />
+									<MenuItemCard
+										key={ele.id}
+										item={ele}
+										restaurantId={restDetails.id}
+									/>
 								))}
 							</div>
 						</div>

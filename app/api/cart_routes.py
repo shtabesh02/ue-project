@@ -26,6 +26,7 @@ def make_transaction():
     """
     form = ShoppingCartForm()
 
+    print(request.json)
     data = request.json["cart_items"]
     for x in range(len(data)):
         data[x]["csrf_token"] = request.cookies["csrf_token"]
@@ -40,11 +41,11 @@ def make_transaction():
         db.session.commit()
 
         # data passed is in:
-        # [{menu_item_id: quantity}, {menu_item_id: quantity}]
+        # [{menu_item_id: int, quantity: int}, {menu_item_id: int, quantity: int}]
         # dict format from front-end
 
         # ex:
-        # cart_items = [{"2": "3"}, {"1": "2"}]
+        # cart_items = [{"menu_item_id": "3", "quantity": "2"}, {"menu_item_id": "1", "quantity": "3"}]
         for item in form.data["cart_items"]:
             new_item = CartItem(
                 shopping_cart_id=cart.id,
@@ -57,4 +58,4 @@ def make_transaction():
         db.session.commit()
         reciept = CartItem.query.filter(CartItem.shopping_cart_id == cart.id).all()
         return {cart_item.id: cart_item.menuitem.to_dict() for cart_item in reciept}
-    return {"errors": {"message": "Bad Data"}}, 400
+    return form.errors
