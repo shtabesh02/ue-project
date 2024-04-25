@@ -28,7 +28,7 @@
 }
 
 .ShoppingCart__checkout:hover {
-	box-shadow: 0 0 30px grey;
+	box-shadow: 0 0 30px var(--grey);
 }
 
 .ShoppingCart__total {
@@ -88,12 +88,13 @@
 }
 
 .CartUpdate span:active {
-	box-shadow: inset grey 0 0 15px;
+	box-shadow: inset var(--grey) 0 0 15px;
+	user-select: none;
 }
 
 .ShoppingCart__delete {
 	font-weight: bold;
-	color: lightcoral;
+	color: var(--accent);
 	cursor: pointer;
 }
 

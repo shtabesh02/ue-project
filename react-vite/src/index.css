@@ -2,6 +2,8 @@
 :root {
 	--main-bg-color: rgb(243, 243, 243);
 	--white: #FFFFFF;
+	--accent: lightcoral;
+	--grey: grey;
 }
 
 html {
@@ -15,7 +17,7 @@ body {
 }
 
 .grey {
-    color: grey
+    color: var(--grey)
 }
 
 .bold {

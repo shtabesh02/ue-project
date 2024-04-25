@@ -22,7 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: var(--white);
 
     font-size: 20px;
     font-weight: 900;
@@ -32,13 +32,12 @@
     height: 30px;
     width: 30px;
 
-    transition: all ease-in-out 300ms;
+    transition: box-shadow ease-in-out 100ms;
 }
 
-.RestDetails__addButton:hover {
-    transform: scale(1.25);
-    box-shadow: lightgrey 5px 5px 15px;
-    border: solid 1px lightgrey;
+.RestDetails__addButton:active {
+    box-shadow: inset 0 0 15px var(--grey);
+    user-select: none;
 }
 
 .RestDetails__nav div {
@@ -47,7 +46,7 @@
 
 .RestDetails__nav  {
     position: sticky;
-    top: 120px;
+    top: 130px;
     align-self: flex-start;
     height: auto;
 
@@ -78,6 +77,10 @@
 
 .RestDetails__details {
     width: 100%;
+}
+
+.RestDetails__details > div {
+    padding-top: 100px;
 }
 
 .RestDetails__header {
@@ -119,5 +122,5 @@
 
 .RestDetails__menuCardDetails {
     padding: 15px;
-    background: linear-gradient(white 90%, lightgrey), rgba(0, 0, 0, 0);
+    mask-image: linear-gradient(180deg, var(--main-bg-color) 85%, transparent);
 }
