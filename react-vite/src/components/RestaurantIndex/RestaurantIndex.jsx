@@ -29,7 +29,6 @@ function RestaurantIndex() {
     useEffect(() => {
         // Get distinct types
         setDistinctTypes([...new Set(Object.values(allRestaurants).map(restaurant => restaurant.type))]);
-        console.log("distinctTypes: ", distinctTypes)
     }, [allRestaurants])
 
     if (!Object.values(allRestaurants).length) return <div>No Restaurants</div>;
@@ -41,8 +40,8 @@ function RestaurantIndex() {
             <RestaurantCategories categories={distinctTypes}/>
             <div className="filtered_items">
                 {features.map(feature => (
-                    <button  className={filters.includes(feature) ? "selected" : ""}
-                    onClick={()=> handleFilterUpdate(feature)}>{feature}
+                    <button key={feature.id} className={filters.includes(feature) ? "selected" : ""}
+                    onClick={()=> handleFilterUpdate(feature)} >{feature}
                     </button>
                 ))}
             </div>
@@ -53,7 +52,7 @@ function RestaurantIndex() {
                         Object.values(allRestaurants)
                         .filter(restaurant => restaurant[f])
                         .map(restaurant => (
-                            <div className="item" key={restaurant.id}>
+                            <div className="slide_item" key={restaurant.id}>
                                 <RestaurantItem restaurantId={restaurant.id} restaurant={restaurant} />
                             </div>
                         ))
@@ -72,4 +71,3 @@ function RestaurantIndex() {
 }
 
 export default RestaurantIndex;
-

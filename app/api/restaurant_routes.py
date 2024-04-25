@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from app.models import Restaurant,MenuItem, db
 from sqlalchemy.orm import joinedload
 from app.forms import RestaurantForm
-from app.forms.menu_items_form import MenuItemForm
+from app.forms import MenuItemForm
 
 restaurant_routes = Blueprint('restaurants', __name__)
 
@@ -78,20 +78,54 @@ def add_restaurant():
 
 
 # Adding a new Item to a restaurant by ID
-
-@restaurant_routes.route('/<int:id>/menu-items', methods=['POST'])
+@restaurant_routes.route('/<int:id>/menu-items/', methods=['POST'])
 @login_required
 def add_new_items(id):
-    menu_item = MenuItemForm()
-    data = request.json
-    menu_item['csrf_token'].data = request.cookies['csrf_token']
-    if menu_item.validate_on_submit():
-        new_item = MenuItem(restaurant_id=id,food_name=data['food_name'], description=data['description'], price=data['price'], img_url=data['img_url'] )
+    form = MenuItemForm()
+    # data = request.json
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_item = MenuItem(
+            restaurant_id = id,
+            type = form.data['type'],
+            food_name = form.data['food_name'],
+            description = form.data['description'],
+            price = form.data['price'],
+            img_url = form.data['img_url']
+            )
         # print('until here, ok!')
         db.session.add(new_item)
         db.session.commit()
-        return jsonify(message='Item added successfully.')
-    return jsonify(message="couldn't addd new item")
+        return new_item.to_dict()
+        # return jsonify(message='Item added successfully.')
+    # return jsonify(message="couldn't addd new item")
+    return form.errors, 401
+    
+
+
+# show all the menu items of a restaurant
+@restaurant_routes.route("/<int:id>/menu-items", methods = ['GET'])
+@login_required
+def show_menu_items(id):
+    menu_items = MenuItem.query.filter_by(restaurant_id = id).all()
+    return [menu_item.to_dict() for menu_item in menu_items]
+    # return {"menu_items": [menu_item.to_dict() for menu_item in menu_items]}
+
+# Delete an item from a menu of a restaurant
+@restaurant_routes.route("/menu-items/<int:item_id>", methods=["DELETE"])
+@login_required
+def delete_item(item_id):
+    menu_item = MenuItem.query.filter_by(id = item_id).first()
+
+    if not menu_item:
+        return {"message": "Menu Item couldn't be found"}
+
+    # if int(current_user.get_id()) != menu_item.restaurant.user_id:
+    #     return {"errors": {"message": "Unauthorized"}}, 401
+
+    db.session.delete(menu_item)
+    db.session.commit()
+    return {"message": "Successfully deleted Menu Item"}
 
 
 @restaurant_routes.route('/<int:id>', methods=['PUT'])
