@@ -9,18 +9,15 @@ import {
   import sessionReducer from "./session";
   import restaurantsReducer from "./restaurants";
   import cartReducer from "./cart";
+import menuitemsReducer from "./menu_items";
 
 
-const rootReducer = combineReducers({
-	session: sessionReducer,
-	restaurants: restaurantsReducer,
-	menuitems: menuitemsReducer,
-});
 
   const rootReducer = combineReducers({
     session: sessionReducer,
     restaurants: restaurantsReducer,
 	  cart: cartReducer,
+    menuitems: menuitemsReducer,
   });
 
   let enhancer;
