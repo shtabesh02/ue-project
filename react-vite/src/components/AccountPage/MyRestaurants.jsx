@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector} from "react-redux";
-import { loadSessionRestaurantsThunk } from "../../redux/restaurants";
+import { loadSessionRestaurantsThunk, deleteRestaurantThunk } from "../../redux/restaurants";
 import RestaurantItem from "../RestaurantItem"
 import { NavLink} from 'react-router-dom';
 
@@ -10,6 +10,10 @@ const MyRestaurants = () => {
     useEffect(() => {
         dispatch(loadSessionRestaurantsThunk());
     }, [dispatch]);
+
+    const handleRemoveRestaurant = (restaurantId) => {
+        dispatch(deleteRestaurantThunk(restaurantId))
+      }
 
     return (
         <div className="myRestaurants">
@@ -23,13 +27,9 @@ const MyRestaurants = () => {
                                 Update
                                 </NavLink>
                                 </div>
-                            {/* <div className="deletemanage-button">
-                                <OpenModalMenuItem
-                                itemText="Delete"
-                                onItemClick={closeMenu}
-                                modalComponent={  <ConfirmSpotDeleteModal spot = {spotstate}/>}
-                                />
-                            </div> */}
+                            <div className="delete-button">
+                                <button onClick={() => handleRemoveRestaurant(restaurant.id)}>Remove</button>
+                            </div>
                         </div>
                         ))
                     }

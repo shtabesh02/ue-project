@@ -91,6 +91,21 @@ export const updateRestaurantThunk = (payload, id) => async (dispatch) => {
       }
 }
 
+export const deleteRestaurantThunk = (id) => async (dispatch) => {
+    const response = await fetch(`/api/restaurants/${id}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(deleteRestaurant(id));
+      return data;
+    } else {
+      const error = await response.json();
+      return error;
+    }
+  };
+
 const initialState = {
 	restaurants: {},
 	restaurantsDetails: {}
@@ -111,7 +126,7 @@ const restaurantsReducer = (state = initialState, action) => {
 			}
 		case DELETE_RESTAURANT: {
 			const all = { ...state };
-			delete all[action.payload];
+			delete all["restaurants"][action.payload];
 			return all;
 		}
 		case SET_DETAILS:
