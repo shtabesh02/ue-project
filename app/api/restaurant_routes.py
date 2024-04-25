@@ -100,7 +100,7 @@ def add_new_items(id):
         # return jsonify(message='Item added successfully.')
     # return jsonify(message="couldn't addd new item")
     return form.errors, 401
-    
+
 
 
 # show all the menu items of a restaurant
@@ -149,7 +149,7 @@ def update_restaurant(id):
 
         db.session.commit()
         return restaurant.to_dict()
-    return form.errors
+    return form.errors, 400
 
 
 @restaurant_routes.route('/<int:id>', methods=['DELETE'])

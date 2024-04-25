@@ -81,11 +81,11 @@ export const updateRestaurantThunk = (payload, id) => async (dispatch) => {
 	});
 	if (response.ok) {
 		const data = await response.json();
-		if (data && Object.keys(data).some((key) => Array.isArray(data[key]))) {
-			return { form: "Something went wrong. Please try again" };
-		} else {
-			dispatch(addRestaurant(data));
+		dispatch(addRestaurant(data));
 		}
+	else {
+		const errorMessages = await response.json();
+    	return {"errors": errorMessages}
 	}
 };
 
