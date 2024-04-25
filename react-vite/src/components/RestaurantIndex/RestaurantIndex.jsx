@@ -52,7 +52,7 @@ function RestaurantIndex() {
                         Object.values(allRestaurants)
                         .filter(restaurant => restaurant[f])
                         .map(restaurant => (
-                            <div className="item" key={restaurant.id}>
+                            <div className="slide_item" key={restaurant.id}>
                                 <RestaurantItem restaurantId={restaurant.id} restaurant={restaurant} />
                             </div>
                         ))
