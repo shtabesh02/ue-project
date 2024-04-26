@@ -3,14 +3,17 @@ import { addCartItem } from "../../redux/cart";
 
 export default function MenuItemCard({ item, restaurantId }) {
 	const stateRestId = useSelector((state) => state.cart.restaurantId);
+	const user = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
 
 	const addItem = (menuitem) => () => {
-		if (stateRestId === null || restaurantId === stateRestId) {
+		if ((user && stateRestId === null) || restaurantId === stateRestId) {
 			dispatch(addCartItem(menuitem));
+		} else if (!user) {
+			alert("Login or Signup to add items to your cart.");
 		} else {
 			alert(
-				"To add items from a different restaurant, delete items currently in your cart!",
+				"To add items from a different restaurant, delete items currently in your cart.",
 			);
 		}
 	};

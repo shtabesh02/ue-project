@@ -5,7 +5,7 @@ import {
 	cartItemsArr,
 	cartSelector,
 	thunkPostTransaction,
-	deleteCart
+	deleteCart,
 } from "../../redux/cart";
 import "./ShoppingCart.css";
 
@@ -35,7 +35,10 @@ export default function ShoppingCart() {
 	const handleDelete = () => dispatch(deleteCart());
 
 	const postTransaction = () => {
-		dispatch(
+		if (!cartItems?.length) {
+			return alert("Add Items to Cart to Checkout.");
+		}
+		return dispatch(
 			thunkPostTransaction(
 				cartItems.map(([key, value]) => ({
 					menu_items_id: +key,
@@ -72,7 +75,9 @@ export default function ShoppingCart() {
 								<div>Total Items: {cart.count}</div>
 							</span>
 							<span>
-								<div className="ShoppingCart__delete" onClick={handleDelete}>Delete All Items?</div>
+								<div className="ShoppingCart__delete" onClick={handleDelete}>
+									Delete All Items?
+								</div>
 							</span>
 						</div>
 					</div>
