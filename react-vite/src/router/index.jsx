@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import LoginFormPage from "../components/LoginFormPage";
 import SignupFormPage from "../components/SignupFormPage";
-import RestaurantIndex from "../components/RestaurantIndex";;
+import RestaurantIndex from "../components/RestaurantIndex";
 import AccountPage from '../components/AccountPage'
 import Layout from "./Layout";
 import RestDetails from "../components/RestDetailsPage";

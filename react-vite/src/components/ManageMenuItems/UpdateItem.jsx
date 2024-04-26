@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import './AddNewItem.css'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { loaditemfromDB, updateitemtoDB } from '../../redux/menu_items';
 
 const UpdateItem = () => {
     
     const dispatch = useDispatch();
     const item_id = useParams();
+
+
+    const location = useLocation();
+    const {restaurant_id} = location.state || {};
+    console.log('restaurant id on update item page: ', restaurant_id)
+
     const navigate = useNavigate();
     const selecteditem = item_id.id;
 
@@ -31,11 +37,13 @@ const UpdateItem = () => {
         }
         await dispatch(updateitemtoDB(newitem, selecteditem))
         alert('Item updated successfully...')
+        navigate(`/restaurants/${restaurant_id}/menu-items`)
     }
+
 
     useEffect(()=> {
         dispatch(loaditemfromDB(selecteditem))
-    },[dispatch]);
+    },[dispatch, selecteditem]);
 
   return (
     <div className="additem_container">

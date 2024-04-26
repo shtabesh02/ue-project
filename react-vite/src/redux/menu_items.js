@@ -3,6 +3,7 @@ const LOAD_MENUITEMS = 'restaurants/items'
 const LOAD_MENUITEM = 'restaurants/item'
 const DELETE_MENUITEMS = 'menuitemsdelete'
 const ADD_MENUITEMS = 'menuitemsadd'
+const UPDATE_MENUITEM = 'menuitem/update'
 
 
 // regular action creator to load menu-items
@@ -42,7 +43,7 @@ export const deleteitemfromDB = (item_id) => async (dispatch) => {
     });
     if(response.ok){
         const data = await response.json();
-        dispatch(deleteitem(data.id));
+        dispatch(deleteitem(item_id));
         // console.log('deleted successfully...')
     }
 }
@@ -95,6 +96,12 @@ export const loaditemfromDB = (id) => async (dispatch) => {
 
 
 // regular action creator to update an item
+const updateitem = (updateditem) => {
+    return {
+        type: UPDATE_MENUITEM,
+        updateditem
+    }
+}
 // thunk action creator to update an item
 export const updateitemtoDB = (updateditem, item_id) => async (dispatch) => {
     const response = await fetch(`/api/menu-items/${item_id}`, {
@@ -103,9 +110,8 @@ export const updateitemtoDB = (updateditem, item_id) => async (dispatch) => {
         body: JSON.stringify(updateditem)
     })
     if(response.ok){
-        // console.log('item updated')
-        const data = response.json();
-        dispatch(additem(data))
+        const data = await response.json();
+        dispatch(updateitem(data))
     }
 }
 
@@ -116,25 +122,30 @@ const initialState = {}
 const menuitemsReducer = (state = initialState, action) => {
     let newState = {}
     switch(action.type){
-        case LOAD_MENUITEMS:
-            // const newItem = {...state, ...action.payload}
-            // return newItem;
-            newState = {...state, ...action.payload}
+        case LOAD_MENUITEMS:{
+            newState = { ...state, ...action.payload }
+
             return newState
-        case DELETE_MENUITEMS:
-            // const currentState = {...state }
-            // delete currentState[action.item_id]
-            // return currentState
+        }
+        case DELETE_MENUITEMS:{
             newState = {...state}
-            delete newState[action.item_id]
+            newState = Object.values(newState)
+            newState = newState.filter(item => item.id !== action.item_id)
             return newState
-        case ADD_MENUITEMS:
-            // const theCurrentState = {...state}
-            // theCurrentState[action.newItem.id] = action.newItem
-            // return theCurrentState
+        }
+        case ADD_MENUITEMS: {
             newState = {...state}
             newState[action.newItem.id] = action.newItem
             return newState
+        }
+        case UPDATE_MENUITEM: {
+            newState = {...state}
+            // newState[action.updateditem.id] = action.updateditem
+            return newState
+
+            
+            // return newState
+        }
         case LOAD_MENUITEM:
             return {...state, [action.menuitem.id]: action.menuitem}
         default:

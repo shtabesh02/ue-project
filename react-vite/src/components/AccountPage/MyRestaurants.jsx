@@ -25,7 +25,7 @@ const MyRestaurants = () => {
                                 <RestaurantItem restaurantId={restaurant.id} restaurant={restaurant} />
                                 <div className="updatemanage-button">
                                 <NavLink to={`/restaurants/${restaurant.id}/edit`}>
-                                Update
+                                Update 
                                 </NavLink>
                                 </div>
                             <div className="delete-button">
