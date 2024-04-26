@@ -44,7 +44,7 @@ const ManageMenuItems = () => {
   const deleteitem = (id) => {
     dispatch(deleteitemfromDB(id))
     alert('item deleted successfully...')
-
+    navigate(`/restaurants/${id}/menu-items`)
   }
   return (
     <div className="additemcontainer">
