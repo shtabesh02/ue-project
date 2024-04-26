@@ -30,9 +30,9 @@ function LoginFormModal() {
 	};
 
 	return (
-		<>
-			<h1 className="LoginModal__header">Log In</h1>
-			<form onSubmit={handleSubmit} className="LoginModal">
+		<form onSubmit={handleSubmit} className="LoginModal">
+			<div>
+				<h1 className="LoginModal__header">Log In</h1>
 				<label className="LoginModal__label">Email</label>
 				<input
 					type="text"
@@ -60,8 +60,8 @@ function LoginFormModal() {
 					</p>
 				)}
 				<button type="submit">Log In</button>
-			</form>
-		</>
+			</div>
+		</form>
 	);
 }
 
