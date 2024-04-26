@@ -107,11 +107,14 @@ def add_new_items(id):
 @restaurant_routes.route("/<int:id>/menu-items", methods = ['GET'])
 @login_required
 def show_menu_items(id):
+    # menu_items = MenuItem.query.filter_by(restaurant_id = id).all()
     menu_items = MenuItem.query.filter_by(restaurant_id = id).all()
-
+    if not menu_items:
+        return {"err": "This restaurant hs no item in its menu yet."}
     return {mi.id: mi.to_dict() for mi in menu_items}
     # return [menu_item.to_dict() for menu_item in menu_items]
     # return {"menu_items": [menu_item.to_dict() for menu_item in menu_items]}
+
 
 # Delete an item from a menu of a restaurant
 @restaurant_routes.route("/menu-items/<int:item_id>", methods=["DELETE"])

@@ -1,5 +1,6 @@
 
 const LOAD_MENUITEMS = 'restaurants/items'
+const LOAD_MENUITEMS_ERROR = 'restaurants/itemserror'
 const LOAD_MENUITEM = 'restaurants/item'
 const DELETE_MENUITEMS = 'menuitemsdelete'
 const ADD_MENUITEMS = 'menuitemsadd'
@@ -8,21 +9,32 @@ const UPDATE_MENUITEM = 'menuitem/update'
 
 // regular action creator to load menu-items
 const loaditems = (payload) => {
+    console.log('testing from loaditem action: ', payload)
     return {
         type: LOAD_MENUITEMS,
         payload
     }
 }
+// regular action creator to load menu-items with error
+const loaditemsError = (error) => {
+    console.log('testing from loaditem action errror: ', error)
+    return {
+        type: LOAD_MENUITEMS_ERROR,
+        error
+    }
+}
 // thunk action creator to load menu-items from database
 export const loaditemsfromDB = (restaurant_id) => async (dispatch) => {
+    console.log('restaurnt id from thunk: ', restaurant_id)
     const response = await fetch(`/api/restaurants/${restaurant_id}/menu-items`);
-    // console.log('response: ', response)
-    if(response.ok){
-        // console.log('Items loaded from db to thunk.')
+    console.log('response: ', response)
+    if (response.ok) {
         const data = await response.json();
-        
-        // console.log('response from db: ', data)
-        dispatch(loaditems(data))
+        if (data['err']) {
+            dispatch(loaditemsError(data))
+        } else {
+            dispatch(loaditems(data))
+        }
     }
 }
 
@@ -41,7 +53,7 @@ export const deleteitemfromDB = (item_id) => async (dispatch) => {
     const response = await fetch(`/api/restaurants/menu-items/${item_id}`, {
         method: 'DELETE',
     });
-    if(response.ok){
+    if (response.ok) {
         // const data = await response.json();
         dispatch(deleteitem(item_id));
         // console.log('deleted successfully...')
@@ -63,10 +75,10 @@ export const additemtoDB = (new_item, restaurant_id) => async (dispatch) => {
     // console.log('starting to fetch...')
     const response = await fetch(`/api/restaurants/${restaurant_id}/menu-items/`, {
         method: 'POST',
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(new_item)
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(new_item)
     })
-    if(response.ok){
+    if (response.ok) {
         // console.log('New item added...')
         const data = await response.json();
         dispatch(additem(data))
@@ -86,7 +98,7 @@ const loaditem = (menuitem) => {
 export const loaditemfromDB = (id) => async (dispatch) => {
     const response = await fetch(`/api/menu-items/${id}/`);
     // console.log('item loaded...', response)
-    if(response.ok){
+    if (response.ok) {
         const data = await response.json();
         // console.log('item jsoned: ', data)
         dispatch(loaditem(data));
@@ -106,10 +118,10 @@ const updateitem = (updateditem) => {
 export const updateitemtoDB = (updateditem, item_id) => async (dispatch) => {
     const response = await fetch(`/api/menu-items/${item_id}`, {
         method: 'PUT',
-        headers: {'Content-Type':'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updateditem)
     })
-    if(response.ok){
+    if (response.ok) {
         const data = await response.json();
         dispatch(updateitem(data))
     }
@@ -118,28 +130,39 @@ export const updateitemtoDB = (updateditem, item_id) => async (dispatch) => {
 
 
 // menu items reducer
-const initialState = {}
+const initialState = {
+    menuItems: {},
+    error: null,
+};
 const menuitemsReducer = (state = initialState, action) => {
     let newState = {}
-    switch(action.type){
+    switch (action.type) {
         case LOAD_MENUITEMS:
-            return { ...state, ...action.payload }
-        case DELETE_MENUITEMS:{
-            newState = {...state}
-            delete newState[action.item_id]
+            console.log('loaeded items: ', action.payload)
+            return { ...state, menuItems: action.payload, error: null }; 
+            // return { ...state, ...action.payload }
+        case LOAD_MENUITEMS_ERROR:
+            return {...state, menuItems: null, error: action.error}
+            // return action.error
+        case DELETE_MENUITEMS: {
+            newState = { ...state }
+            delete newState.menuItems[action.item_id]
             return newState
         }
         case ADD_MENUITEMS: {
-            newState = {...state}
-            newState[action.newItem.id] = action.newItem
-            return newState
+            return {...state, menuItems: {...state.menuItems, [action.newItem.id]: action.newItem}}
+            // newState = { ...state }
+            // newState[action.newItem.id] = action.newItem
+            // return newState
         }
         case UPDATE_MENUITEM: {
-            newState = {...state}
-            return newState
+            return {...state, menuItems: {...state.menuItems, [action.updateditem.id]: action.updateditem}}
+            // newState = { ...state }
+            // return newState
         }
         case LOAD_MENUITEM:
-            return {...state, [action.menuitem.id]: action.menuitem}
+            return {...state, menuItems: {...state.menuItems, [action.menuitem.id]: action.menuitem}}
+            // return { ...state, [action.menuitem.id]: action.menuitem }
         default:
             return state
     }
