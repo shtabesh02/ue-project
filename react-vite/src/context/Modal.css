@@ -7,6 +7,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
+  animation: popout 300ms ease;
+}
+
+@keyframes popout {
+	from {
+		opacity: 0%;
+		top: 100%;
+	}
+	to {
+		top: 0;
+	}
 }
 
 #modal-background {
@@ -21,4 +33,5 @@
 #modal-content {
   position: absolute;
   background-color:white;
+  border-radius: 10px;
 }

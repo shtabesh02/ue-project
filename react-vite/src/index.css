@@ -3,7 +3,10 @@
 	--main-bg-color: rgb(243, 243, 243);
 	--white: #FFFFFF;
 	--accent: lightcoral;
+	--light-blue: #00aaff;
+	--dark-blue: #0088cc;
 	--grey: grey;
+	--dark-grey: #555555;
 }
 
 html {
