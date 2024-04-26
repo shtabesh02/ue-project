@@ -42,7 +42,7 @@ export const deleteitemfromDB = (item_id) => async (dispatch) => {
         method: 'DELETE',
     });
     if(response.ok){
-        const data = await response.json();
+        // const data = await response.json();
         dispatch(deleteitem(item_id));
         // console.log('deleted successfully...')
     }
@@ -122,15 +122,11 @@ const initialState = {}
 const menuitemsReducer = (state = initialState, action) => {
     let newState = {}
     switch(action.type){
-        case LOAD_MENUITEMS:{
-            newState = { ...state, ...action.payload }
-
-            return newState
-        }
+        case LOAD_MENUITEMS:
+            return { ...state, ...action.payload }
         case DELETE_MENUITEMS:{
             newState = {...state}
-            newState = Object.values(newState)
-            newState = newState.filter(item => item.id !== action.item_id)
+            delete newState[action.item_id]
             return newState
         }
         case ADD_MENUITEMS: {
@@ -140,11 +136,7 @@ const menuitemsReducer = (state = initialState, action) => {
         }
         case UPDATE_MENUITEM: {
             newState = {...state}
-            // newState[action.updateditem.id] = action.updateditem
             return newState
-
-            
-            // return newState
         }
         case LOAD_MENUITEM:
             return {...state, [action.menuitem.id]: action.menuitem}
