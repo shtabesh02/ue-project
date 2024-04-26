@@ -6,7 +6,20 @@ import { useNavigate, useParams } from 'react-router-dom';
 const ManageMenuItems = () => {
   // list of menu items
 
-  const menu_items = useSelector(state => Object.values(state.menuitems));
+  // const error = useSelector(state => state.menuitems.error);
+
+
+  const menu_items = useSelector(state => {
+    const items = state.menuitems.menuItems || {};
+    return Object.values(items)
+  });
+
+  const error = useSelector(state => {
+    const e = state.menuitems.error || {};
+    return Object.values(e)
+  })
+
+
   const current_user = useSelector(state => state.session.user.username);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -56,11 +69,11 @@ const ManageMenuItems = () => {
         <ul className='menu_items'>
           <li style={{ fontSize: "1.5em" }}><span>No</span><span>Name</span><span>Type</span><span>Price</span><span>Update</span><span>Delete</span></li>
           <hr />
-          {menu_items ? (
+          {menu_items.length > 0 ? (
             menu_items.map(item => (
               <li key={item.id}><span>{item.id}</span><span>{item.food_name}</span><span>{item.type}</span><span>{item.price}</span><span className='update' onClick={() => updateitem(item.id, id)}>Update</span><span className='delete' onClick={() => deleteitem(item.id)}>Delete</span></li>
             ))
-          ) : (<p>Loading...</p>)}
+          ) : (<p>{error}</p>)}
         </ul>
       </div>
     </div>
