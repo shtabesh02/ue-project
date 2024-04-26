@@ -82,10 +82,10 @@ export const updateRestaurantThunk = (payload, id) => async (dispatch) => {
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(addRestaurant(data));
-		}
+	}
 	else {
 		const errorMessages = await response.json();
-    	return {"errors": errorMessages}
+		return { "errors": errorMessages }
 	}
 };
 

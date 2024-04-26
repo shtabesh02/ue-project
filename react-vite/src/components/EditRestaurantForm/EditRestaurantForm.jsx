@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, Navigate, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './EditRestaurantForm.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateRestaurantThunk, loadRestDetails } from '../../redux/restaurants';
