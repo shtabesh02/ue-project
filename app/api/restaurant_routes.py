@@ -100,7 +100,7 @@ def add_new_items(id):
         # return jsonify(message='Item added successfully.')
     # return jsonify(message="couldn't addd new item")
     return form.errors, 401
-    
+
 
 
 # show all the menu items of a restaurant
@@ -108,14 +108,16 @@ def add_new_items(id):
 @login_required
 def show_menu_items(id):
     menu_items = MenuItem.query.filter_by(restaurant_id = id).all()
-    return [menu_item.to_dict() for menu_item in menu_items]
+
+    return {mi.id: mi.to_dict() for mi in menu_items}
+    # return [menu_item.to_dict() for menu_item in menu_items]
     # return {"menu_items": [menu_item.to_dict() for menu_item in menu_items]}
 
 # Delete an item from a menu of a restaurant
 @restaurant_routes.route("/menu-items/<int:item_id>", methods=["DELETE"])
 @login_required
 def delete_item(item_id):
-    menu_item = MenuItem.query.filter_by(id = item_id).first()
+    menu_item = MenuItem.query.get(item_id)
 
     if not menu_item:
         return {"message": "Menu Item couldn't be found"}
@@ -149,7 +151,7 @@ def update_restaurant(id):
 
         db.session.commit()
         return restaurant.to_dict()
-    return form.errors
+    return form.errors, 400
 
 
 @restaurant_routes.route('/<int:id>', methods=['DELETE'])

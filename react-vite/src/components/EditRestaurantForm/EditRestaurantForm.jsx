@@ -64,8 +64,8 @@ const EditRestaurantForm = () => {
 
         const response = await dispatch(updateRestaurantThunk(updatedRestaurant, restaurantId));
 
-        if(response && typeof response === 'object' && 'form' in response){
-            setErrors({"form": "Something went wrong. Please try again"} )
+        if(response && response.errors){
+            setErrors(response.errors )
         } else {
             // If there are no validation errors, navigate to the restaurant detail page
             navigate(`/restaurants/${restaurantId}`);
@@ -84,37 +84,51 @@ const EditRestaurantForm = () => {
                     <div>
                         <label htmlFor="name">Restaurant Name</label>
                         <input type="text" value={name} onChange={e => setName(e.target.value)} />
+                        <div className='edit_restaurants_errors'>
                         {errors.name && <p>{errors.name}</p>}
+                        </div>
                     </div>
                     <div>
                         <label htmlFor="RestaurantType">Restaurant Type</label>
                         <input type="text" value={type} onChange={e => setType(e.target.value)} />
+                        <div className='edit_restaurants_errors'>
                         {errors.type && <p>{errors.type}</p>}
+                        </div>
                     </div>
                     <div>
                         <label htmlFor="Description">Description</label>
                         <input type="text" value={description} onChange={e => setDescription(e.target.value)} />
-                        {errors.description && <p>{errors.description}</p>}
+                        <div className='edit_restaurants_errors'>
+                            {errors.description && <p>{errors.description}</p>}
+                        </div>
                     </div>
                     <div>
                         <label htmlFor="Address">Address</label>
                         <input type="text" value={address} onChange={e => setAddress(e.target.value)} />
+                        <div className='edit_restaurants_errors'>
                         {errors.address && <p>{errors.address}</p>}
+                        </div>
                     </div>
                     <div>
                         <label htmlFor="City">City</label>
                         <input type="text" value={city} onChange={e => setCity(e.target.value)} />
+                        <div className='edit_restaurants_errors'>
                         {errors.city && <p>{errors.city}</p>}
+                        </div>
                     </div>
                     <div>
                         <label htmlFor="Country">Country</label>
                         <input type="text" value={country} onChange={e => setCountry(e.target.value)} />
-                        {errors.country && <p>{errors.country}</p>}
+                        <div className='edit_restaurants_errors'>
+                            {errors.country && <p>{errors.country}</p>}
+                        </div>
                     </div>
                     <div>
                         <label htmlFor="img_url">Image</label>
                         <input type="text" value={img_url} onChange={e => setImg_URL(e.target.value)} />
-                        {errors.img_url && <p>{errors.img_url}</p>}
+                        <div className='edit_restaurants_errors'>
+                            {errors.img_url && <p>{errors.img_url}</p>}
+                        </div>
                     </div>
                     <div className='checkmarks'>
                         <div>
@@ -138,7 +152,6 @@ const EditRestaurantForm = () => {
                             <input type="checkbox" name="" id="" value={in_a_rush} onChange={e => setIn_a_rush(e.target.value)} />
                         </div>
                     </div>
-                    <div className='edit_restaurants_errors'>{errors.form && <p>{errors.form}</p>}</div>
                     <div className='sbmtbtn'>
                         <button type="submit">Update</button>
                     </div>
