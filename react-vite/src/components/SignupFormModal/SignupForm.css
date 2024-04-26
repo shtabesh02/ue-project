@@ -1,9 +1,9 @@
 div.first {
-    animation: slide-out 1s ease;
+    animation: slide-out 500ms ease;
 }
 
 div.second {
-    animation: slide-in 1s ease;
+    animation: slide-in 500ms ease;
 }
 
 @keyframes slide-in {
