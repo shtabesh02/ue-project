@@ -64,7 +64,7 @@ function SignupFormModal() {
 					)}
 					<label>Email</label>
 					<input
-						type="text"
+						type="email"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						required
@@ -77,7 +77,7 @@ function SignupFormModal() {
 					)}
 					<label>Phone</label>
 					<input
-						type="text"
+						type="tel"
 						value={phone}
 						onChange={(e) => setPhone(e.target.value)}
 						required
@@ -169,7 +169,7 @@ function SignupFormModal() {
 					)}
 					<label>Street Address</label>
 					<input
-						type="password"
+						type="text"
 						value={address}
 						onChange={(e) => setAddress(e.target.value)}
 						required
@@ -182,7 +182,7 @@ function SignupFormModal() {
 					)}
 					<label>City</label>
 					<input
-						type="password"
+						type="text"
 						value={city}
 						onChange={(e) => setCity(e.target.value)}
 						required
@@ -195,7 +195,7 @@ function SignupFormModal() {
 					)}
 					<label>Country</label>
 					<input
-						type="password"
+						type="text"
 						value={country}
 						onChange={(e) => setCountry(e.target.value)}
 						required
