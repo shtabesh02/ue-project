@@ -27,12 +27,6 @@ const ManageMenuItems = () => {
   const {id} = useParams(); // Selected restaurant id
   console.log('restaurant id: ', id)
 
-  // const menu_items = []
-  // for (let key in menu_itemss) {
-  //   menu_items.push(menu_itemss[key])
-  // }
-
-  // console.log('menu_items array: ', menu_items)
 
   useEffect(() => {
     dispatch(loaditemsfromDB(id))
@@ -54,8 +48,8 @@ const ManageMenuItems = () => {
       state: {restaurant_id}
     })
   }
-  const deleteitem = (id) => {
-    dispatch(deleteitemfromDB(id))
+  const deleteitem = (item_id) => {
+    dispatch(deleteitemfromDB(item_id))
     alert('item deleted successfully...')
     navigate(`/restaurants/${id}/menu-items`)
   }
