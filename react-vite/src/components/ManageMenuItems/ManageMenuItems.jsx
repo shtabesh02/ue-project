@@ -6,7 +6,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 const ManageMenuItems = () => {
   // list of menu items
 
-  // const error = useSelector(state => state.menuitems.error);
 
 
   const menu_items = useSelector(state => {
@@ -32,9 +31,6 @@ const ManageMenuItems = () => {
     dispatch(loaditemsfromDB(id))
   }, [dispatch, id])
 
-  // if (menu_items.length == 0) {
-  //   return <p>Loadding...</p>
-  // }
   if (!current_user) {
     return <p>You must loggin first...</p>
   }
