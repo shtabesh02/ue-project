@@ -25,7 +25,7 @@ const ManageMenuItems = () => {
   const navigate = useNavigate();
 
   const {id} = useParams(); // Selected restaurant id
-  console.log('restaurant id: ', id)
+  // console.log('restaurant id: ', id)
 
 
   useEffect(() => {
