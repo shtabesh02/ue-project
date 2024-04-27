@@ -12,12 +12,19 @@ const UpdateItem = () => {
 
     const location = useLocation();
     const {restaurant_id} = location.state || {};
-    console.log('restaurant id on update item page: ', restaurant_id)
+    // console.log('restaurant id on update item page: ', restaurant_id)
 
     const navigate = useNavigate();
     const selecteditem = item_id.id;
+    // console.log('item_id.id: ', item_id.id)
 
-    const all_items = useSelector(state => Object.values(state.menuitems));
+    const all_items = useSelector(state => {
+        const items = state.menuitems.menuItems || {};
+        return Object.values(items)
+      });
+
+    //   console.log('all_items: ', all_items)
+
     const chosenitem = all_items.filter(item => item.id == selecteditem);
 
     const [type, setType] = useState(chosenitem[0].type);
