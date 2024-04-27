@@ -9,7 +9,7 @@ const UPDATE_MENUITEM = 'menuitem/update'
 
 // regular action creator to load menu-items
 const loaditems = (payload) => {
-    console.log('testing from loaditem action: ', payload)
+    // console.log('testing from loaditem action: ', payload)
     return {
         type: LOAD_MENUITEMS,
         payload
@@ -17,7 +17,7 @@ const loaditems = (payload) => {
 }
 // regular action creator to load menu-items with error
 const loaditemsError = (error) => {
-    console.log('testing from loaditem action errror: ', error)
+    // console.log('testing from loaditem action errror: ', error)
     return {
         type: LOAD_MENUITEMS_ERROR,
         error
@@ -25,9 +25,9 @@ const loaditemsError = (error) => {
 }
 // thunk action creator to load menu-items from database
 export const loaditemsfromDB = (restaurant_id) => async (dispatch) => {
-    console.log('restaurnt id from thunk: ', restaurant_id)
+    // console.log('restaurnt id from thunk: ', restaurant_id)
     const response = await fetch(`/api/restaurants/${restaurant_id}/menu-items`);
-    console.log('response: ', response)
+    // console.log('response: ', response)
     if (response.ok) {
         const data = await response.json();
         if (data['err']) {

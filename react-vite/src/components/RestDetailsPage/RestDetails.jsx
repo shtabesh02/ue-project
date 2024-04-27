@@ -8,7 +8,7 @@ import "./RestDetails.css";
 
 export default function RestDetails() {
 	const { id } = useParams();
-	console.log('restaurant id from RestDetails: ', id)
+	// console.log('restaurant id from RestDetails: ', id)
 	const dispatch = useDispatch();
 	const restDetails = useSelector(
 		(state) => state.restaurants.restaurantsDetails,

@@ -24,7 +24,7 @@ export const addRestaurantThunk = (newRestaurnt) => async (dispatch) => {
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(newRestaurnt),
 	});
-	console.log("response: ", response);
+	// console.log("response: ", response);
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(addRestaurant(data));
