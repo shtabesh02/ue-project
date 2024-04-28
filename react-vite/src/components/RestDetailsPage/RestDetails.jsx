@@ -8,13 +8,12 @@ import "./RestDetails.css";
 
 export default function RestDetails() {
 	const { id } = useParams();
-	const userId = useSelector((state) => state.session.user.id);
 	const dispatch = useDispatch();
+	const user = useSelector((state) => state.session.user);
 	const restDetails = useSelector(
 		(state) => state.restaurants.restaurantsDetails,
 	);
 	const [types, setTypes] = useState([]);
-	const navigate = useNavigate();
 	useEffect(() => {
 		dispatch(loadRestDetails(id));
 	}, [dispatch, id]);
@@ -34,9 +33,9 @@ export default function RestDetails() {
 				<img className="RestDetails__img" src={restDetails?.img_url} />
 			</div>
 			<div className="RestDetails__header">
-				{userId === restDetails?.user_id && (
+				{user?.id === restDetails?.user_id && (
 					<NavLink
-						className="RestDetails__manageMenu"
+						className="RestDetails__manageMenu bold"
 						to={`/restaurants/${id}/menu-items`}
 					>
 						Mange menu of the restaurant
