@@ -171,17 +171,26 @@ function ProfileButton() {
 										<NavLink
 											to={"restaurants/addyourrestaurant"}
 											style={{ textDecoration: "none" }}
+											onClick={toggleMenu}
 										>
 											Add your restaurant
 										</NavLink>
 									</span>
 									<span>
-										<NavLink to={""} style={{ textDecoration: "none" }}>
+										<NavLink
+											to={""}
+											style={{ textDecoration: "none" }}
+											onClick={toggleMenu}
+										>
 											Sign up to deliver
 										</NavLink>
 									</span>
 									<span>
-										<NavLink to={""} style={{ textDecoration: "none" }}>
+										<NavLink
+											to={""}
+											style={{ textDecoration: "none" }}
+											onClick={toggleMenu}
+										>
 											Create a business account
 										</NavLink>
 									</span>
