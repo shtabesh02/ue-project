@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadRestDetails } from "../../redux/restaurants";
 import MenuNav from "./MenuNav";
@@ -8,7 +8,7 @@ import "./RestDetails.css";
 
 export default function RestDetails() {
 	const { id } = useParams();
-	// console.log('restaurant id from RestDetails: ', id)
+	const userId = useSelector((state) => state.session.user.id);
 	const dispatch = useDispatch();
 	const restDetails = useSelector(
 		(state) => state.restaurants.restaurantsDetails,
@@ -33,10 +33,15 @@ export default function RestDetails() {
 			<div className="RestDetails__imgContainer">
 				<img className="RestDetails__img" src={restDetails?.img_url} />
 			</div>
-			<div className="manage_menu_items">
-				<button onClick={()=> navigate(`/restaurants/${id}/menu-items`)}>Mange menu of the restaurant</button>
-			</div>
 			<div className="RestDetails__header">
+				{userId === restDetails?.user_id && (
+					<NavLink
+						className="RestDetails__manageMenu"
+						to={`/restaurants/${id}/menu-items`}
+					>
+						Mange menu of the restaurant
+					</NavLink>
+				)}
 				<h1>
 					{restDetails?.name} ({restDetails?.address})
 				</h1>
