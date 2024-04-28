@@ -127,7 +127,6 @@ export const updateitemtoDB = (updateditem, item_id) => async (dispatch) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updateditem)
     })
-    // console.log('response: ', response)
     if (response.ok) {
         const data = await response.json();
         dispatch(updateitem(data))
