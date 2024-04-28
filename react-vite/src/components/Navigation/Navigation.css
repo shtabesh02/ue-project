@@ -2,11 +2,17 @@
   position: absolute;
 }
 
+.logo {
+  color: aliceblue;
+  font-size: 100px;
+}
+
 .nav_bar{
   background-color: rgb(87, 112, 134);
   position: sticky;
   top: 0px;
   z-index: 100;
+  padding: 20px;
 }
 .nav_bar .h_menu{
   list-style: none;
@@ -16,9 +22,6 @@
   align-items: center;
 }
 
-.nav_bar > ul > li{
-  margin: 20px;
-}
 .nav_bar > ul .login_signup span{
   margin: 0px 10px;
   cursor: pointer;
@@ -30,10 +33,10 @@
   display: flex;
   justify-content: space-evenly;
 }
-
-
-.nav_bar > ul > .uber_eats_menu span{
-  margin: 0px 10px;
+.nav_bar .login_signup input {
+  background-color: aliceblue;
+  border-radius: 5px;
+  border-color: white;
 }
 
 .uber_eats_menu{

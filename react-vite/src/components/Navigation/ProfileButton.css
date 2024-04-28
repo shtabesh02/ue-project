@@ -12,6 +12,16 @@
     gap: 10px;
 }
 
+.profile-dropdown i {
+    padding: 5px;
+}
+
+.user-ico {
+    font-size: 25px;
+    color: aliceblue;
+    padding-right: 20px;
+}
+
 
 .sl{
     display: flex;

@@ -19,12 +19,16 @@ function Navigation() {
 							<ProfileButton />
 						</span>
 						<span>
-							<NavLink to={"/"} style={{ textDecoration: "none" }}>
+							<NavLink
+								to={"/"}
+								style={{ textDecoration: "none" }}
+								className="logo bold"
+							>
 								Uber Eats
 							</NavLink>
 						</span>
 					</li>
-					<li className="login_signup">
+					<div className="login_signup">
 						<div>
 							<span>
 								<OpenModalMenuItem
@@ -39,7 +43,7 @@ function Navigation() {
 								/>
 							</span>
 						</div>
-					</li>
+					</div>
 				</ul>
 			) : (
 				<ul className="h_menu">
@@ -49,11 +53,15 @@ function Navigation() {
 								<ProfileButton />
 							</span>
 						</span>
-						<NavLink to={"/"} style={{ textDecoration: "none" }}>
+						<NavLink
+							to={"/"}
+							style={{ textDecoration: "none" }}
+							className="logo bold"
+						>
 							Uber Eats
 						</NavLink>
 					</li>
-					<li className="login_signup">
+					<div className="login_signup">
 						<div>
 							<span>Delivery</span>
 							<span>Pickup</span>
@@ -63,7 +71,7 @@ function Navigation() {
 								<CartButton />
 							</span>
 						</div>
-					</li>
+					</div>
 				</ul>
 			)}
 		</div>
