@@ -152,20 +152,18 @@ function ProfileButton() {
 						</>
 					) : (
 						<>
-							<li>
-								<div className="sl">
-									<OpenModalMenuItem
-										itemText="Sign Up"
-										onItemClick={closeMenu}
-										modalComponent={<SignupFormModal />}
-									/>
-									<OpenModalMenuItem
-										itemText="Log In"
-										onItemClick={closeMenu}
-										modalComponent={<LoginFormModal />}
-									/>
-								</div>
-							</li>
+							<div className="sl">
+								<OpenModalMenuItem
+									itemText="Sign Up"
+									onItemClick={closeMenu}
+									modalComponent={<SignupFormModal />}
+								/>
+								<OpenModalMenuItem
+									itemText="Log In"
+									onItemClick={closeMenu}
+									modalComponent={<LoginFormModal />}
+								/>
+							</div>
 
 							<li>
 								<div className="addnewrestaurant">
