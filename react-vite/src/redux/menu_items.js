@@ -127,7 +127,7 @@ export const updateitemtoDB = (updateditem, item_id) => async (dispatch) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updateditem)
     })
-    console.log('response: ', response)
+    // console.log('response: ', response)
     if (response.ok) {
         const data = await response.json();
         dispatch(updateitem(data))
@@ -148,7 +148,7 @@ const menuitemsReducer = (state = initialState, action) => {
     let newState = {}
     switch (action.type) {
         case LOAD_MENUITEMS:
-            console.log('loaeded items: ', action.payload)
+            // console.log('loaeded items: ', action.payload)
             return { ...state, menuItems: action.payload, error: null }; 
             // return { ...state, ...action.payload }
         case LOAD_MENUITEMS_ERROR:
