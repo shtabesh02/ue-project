@@ -59,7 +59,11 @@ function ProfileButton() {
 								</span>
 								<div>
 									<div>{user.username}</div>
-									<NavLink to={`/myaccountpage`} className="my-account">
+									<NavLink
+										to={`/myaccountpage`}
+										className="my-account"
+										onClick={toggleMenu}
+									>
 										<div>Manage Account</div>
 									</NavLink>
 								</div>
@@ -95,7 +99,11 @@ function ProfileButton() {
 							<li>
 								<div className="addnewrestaurant">
 									<div>
-										<NavLink to={""} style={{ textDecoration: "none" }}>
+										<NavLink
+											to={""}
+											style={{ textDecoration: "none" }}
+											onClick={toggleMenu}
+										>
 											Create a business account
 										</NavLink>
 									</div>
@@ -103,12 +111,17 @@ function ProfileButton() {
 										<NavLink
 											to={"restaurants/addyourrestaurant"}
 											style={{ textDecoration: "none" }}
+											onClick={toggleMenu}
 										>
 											Add your restaurant
 										</NavLink>
 									</div>
 									<div>
-										<NavLink to={""} style={{ textDecoration: "none" }}>
+										<NavLink
+											to={""}
+											style={{ textDecoration: "none" }}
+											onClick={toggleMenu}
+										>
 											Sign up to deliver
 										</NavLink>
 									</div>
