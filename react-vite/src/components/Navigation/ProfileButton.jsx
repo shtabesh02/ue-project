@@ -5,7 +5,7 @@ import { thunkLogout } from "../../redux/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import './ProfileButton.css'
 
 function ProfileButton() {
@@ -13,6 +13,8 @@ function ProfileButton() {
   const [showMenu, setShowMenu] = useState(false);
   const user = useSelector((store) => store.session.user);
   const ulRef = useRef();
+
+  const navigate = useNavigate();
 
   const toggleMenu = (e) => {
     e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
@@ -39,13 +41,17 @@ function ProfileButton() {
     e.preventDefault();
     dispatch(thunkLogout());
     closeMenu();
+
+    navigate('/');
   };
+
 
   return (
     <div className="left_menubar">
       <button onClick={toggleMenu}>
         <FaUserCircle />
       </button>
+      
       {showMenu && (
         <ul className={"profile-dropdown"} ref={ulRef}>
           {user ? (

@@ -29,6 +29,24 @@ function LoginFormModal() {
 		}
 	};
 
+	const handleDemoLogin = async (e) => {
+		e.preventDefault();
+		
+		const serverResponse = await dispatch(
+			thunkLogin({
+				email: 'marnie@marnie.com',
+				password: 'password',
+			}),
+		);
+
+		if (serverResponse) {
+			setErrors(serverResponse);
+		} else {
+			closeModal();
+		}
+
+	}
+
 	return (
 		<form onSubmit={handleSubmit} className="LoginModal">
 			<div>
@@ -60,6 +78,7 @@ function LoginFormModal() {
 					</p>
 				)}
 				<button type="submit">Log In</button>
+				<button type='button' style={{marginLeft:'15px'}} onClick={handleDemoLogin}>Log in as Demo User</button>
 			</div>
 		</form>
 	);
