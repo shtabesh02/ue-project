@@ -82,6 +82,12 @@ export const additemtoDB = (new_item, restaurant_id) => async (dispatch) => {
         // console.log('New item added...')
         const data = await response.json();
         dispatch(additem(data))
+        return;
+    }else{
+        const errors = await response.json();
+        return errors
+        // the bellow is new
+        // return rejectWithValue(errors);
     }
 }
 
@@ -121,9 +127,13 @@ export const updateitemtoDB = (updateditem, item_id) => async (dispatch) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updateditem)
     })
+    console.log('response: ', response)
     if (response.ok) {
         const data = await response.json();
         dispatch(updateitem(data))
+    }else{
+        const errors = await response.json();
+        return errors
     }
 }
 

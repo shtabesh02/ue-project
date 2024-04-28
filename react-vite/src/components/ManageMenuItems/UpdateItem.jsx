@@ -33,6 +33,7 @@ const UpdateItem = () => {
     const [price, setPrice] = useState(chosenitem[0].price);
     const [img_url, setImg_url] = useState(chosenitem[0].img_url);
 
+    const [errors, setErrors] = useState({});
     const updateitem = async (e) => {
         e.preventDefault();
         const newitem = {
@@ -42,9 +43,39 @@ const UpdateItem = () => {
             price,
             img_url,
         }
-        await dispatch(updateitemtoDB(newitem, selecteditem))
-        alert('Item updated successfully...')
-        navigate(`/restaurants/${restaurant_id}/menu-items`)
+        const updatetoDB = await dispatch(updateitemtoDB(newitem, selecteditem))
+
+
+        const all_errors = {};
+
+        if(updatetoDB && typeof updatetoDB === 'object'){
+            if (updatetoDB.food_name) {
+                all_errors['food_name'] = updatetoDB.food_name;
+            }
+            if (updatetoDB.type) {
+                all_errors['type'] = updatetoDB.type;
+            }
+            if (updatetoDB.description) {
+                all_errors['description'] = updatetoDB.description;
+            }
+            if (updatetoDB.price) {
+                all_errors['price'] = updatetoDB.price;
+            }
+            if (updatetoDB.img_url) {
+                all_errors['img_url'] = updatetoDB.img_url;
+            }
+    
+            setErrors(all_errors);
+        }else{
+            // navigation upon successful addition / no error
+            navigate(`/restaurants/${restaurant_id}/menu-items`)
+        }
+
+
+
+        // console.log('updatedtoDB: ', updatetoDB)
+        // alert('Item updated successfully...')
+        // navigate(`/restaurants/${restaurant_id}/menu-items`)
     }
 
 
@@ -59,22 +90,37 @@ const UpdateItem = () => {
                 <form className="newitemForm" onSubmit={updateitem}>
                     <div>
                         <label htmlFor="name">Food Name</label>
+                        <p style={{ color: "red" }}>
+                            {errors.food_name}
+                        </p>
                         <input type="text" value={food_name} onChange={e => setFood_name(e.target.value)} />
                     </div>
                     <div>
                         <label htmlFor="RestaurantType">Resaurant Type</label>
+                        <p style={{ color: "red" }}>
+                            {errors.type}
+                        </p>
                         <input type="text" value={type} onChange={e => setType(e.target.value)} />
                     </div>
                     <div>
                         <label htmlFor="Description">Description</label>
+                        <p style={{ color: "red" }}>
+                            {errors.description}
+                        </p>
                         <input type="text" value={description} onChange={e => setDescription(e.target.value)} />
                     </div>
                     <div>
                         <label htmlFor="Price">Price</label>
+                        <p style={{ color: "red" }}>
+                            {errors.price}
+                        </p>
                         <input type="text" value={price} onChange={e => setPrice(e.target.value)} />
                     </div>
                     <div>
                         <label htmlFor="img_url">Image</label>
+                        <p style={{ color: "red" }}>
+                            {errors.img_url}
+                        </p>
                         <input type="text" value={img_url} onChange={e => setImg_url(e.target.value)} />
                     </div>
                     <div className='sbmtbtn'>

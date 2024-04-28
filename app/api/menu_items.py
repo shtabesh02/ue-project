@@ -51,7 +51,7 @@ def update_items(id):
 
         db.session.commit()
         return menu_item.to_dict()
-    return form.errors
+    return form.errors, 401
 
 
 # Moved to restaurant_routes.py
