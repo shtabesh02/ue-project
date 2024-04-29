@@ -29,7 +29,7 @@ function SignupFormModal() {
 		e.preventDefault();
 
 		if (password !== confirmPassword) {
-			return setErrors({
+			setErrors({
 				confirmPassword:
 					"Confirm Password field must be the same as the Password field",
 			});
@@ -49,6 +49,8 @@ function SignupFormModal() {
 			}),
 		);
 
+		console.log('sign up errors: ', serverResponse)
+		
 		if (serverResponse) {
 			setErrors(serverResponse);
 			setHidden((state) => !state);
