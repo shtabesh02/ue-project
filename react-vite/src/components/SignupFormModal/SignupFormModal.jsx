@@ -49,7 +49,7 @@ function SignupFormModal() {
 			}),
 		);
 
-		console.log('sign up errors: ', serverResponse)
+		// console.log('sign up errors: ', serverResponse)
 		
 		if (serverResponse) {
 			setErrors(serverResponse);
