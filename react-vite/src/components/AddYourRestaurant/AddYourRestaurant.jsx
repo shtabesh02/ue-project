@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import './AddYourRestaurant.css'
 import { useDispatch } from 'react-redux';
 import { addRestaurantThunk } from '../../redux/restaurants';
+import LoginFormPage from '../LoginFormPage';
 
 const AddYourRestaurant = () => {
     const navigate = useNavigate();
@@ -59,6 +60,10 @@ const AddYourRestaurant = () => {
             </div>
             <div className="getstarted">
                 <h2>Get started</h2>
+                <h4>
+                    <span>Already have an account? </span>
+                    <a href="/login">Login</a>
+                </h4>
                 <form className="newRestaurantForm" onSubmit={addNewRestaurant}>
                     <div>
                         <label htmlFor="name">Restaurant Name</label>
