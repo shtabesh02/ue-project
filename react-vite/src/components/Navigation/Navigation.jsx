@@ -28,6 +28,7 @@ function Navigation() {
 							</NavLink>
 						</span>
 					</li>
+					{/* The bellow div was an li */}
 					<div className="login_signup">
 						<div>
 							<span>

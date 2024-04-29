@@ -7,7 +7,8 @@ def check_price(form, field):
     the_price = field.data
     if not isinstance(the_price, int):
         raise ValidationError('Price must be a number.')
-
+    if the_price > 1000 or the_price < 0:
+        raise ValidationError('The price must be between 0 and 1000')
 class MenuItemForm(FlaskForm):
     type = StringField('Type', validators=[DataRequired()])
     food_name = StringField('Food Name', validators=[DataRequired()])

@@ -23,13 +23,11 @@ const MyRestaurants = () => {
 
                             <div className="myitem" key={restaurant.id}>
                                 <RestaurantItem restaurantId={restaurant.id} restaurant={restaurant} />
-                                <div className="updatemanage-button">
-                                <NavLink to={`/restaurants/${restaurant.id}/edit`}>
-                                Update 
+                            <div className="delete-update-button">
+                                <NavLink className="button-link" to={`/restaurants/${restaurant.id}/edit`}>
+                                Update
                                 </NavLink>
-                                </div>
-                            <div className="delete-button">
-                                <button onClick={() => handleRemoveRestaurant(restaurant.id)}>Remove</button>
+                                <button className="button-remove" onClick={() => handleRemoveRestaurant(restaurant.id)}>Remove</button>
                             </div>
                         </div>
                         ))
