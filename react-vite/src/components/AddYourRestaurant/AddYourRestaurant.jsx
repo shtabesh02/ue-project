@@ -3,7 +3,6 @@ import {useNavigate} from 'react-router-dom'
 import './AddYourRestaurant.css'
 import { useDispatch } from 'react-redux';
 import { addRestaurantThunk } from '../../redux/restaurants';
-import LoginFormPage from '../LoginFormPage';
 
 const AddYourRestaurant = () => {
     const navigate = useNavigate();
@@ -21,6 +20,7 @@ const AddYourRestaurant = () => {
     const [in_a_rush, setIn_a_rush] = useState(false);
     const [errors, setErrors] = useState({});
 
+    
     const dispatch = useDispatch();
     const addNewRestaurant = async (e) => {
         e.preventDefault();
