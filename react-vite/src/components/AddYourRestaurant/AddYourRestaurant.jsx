@@ -41,6 +41,7 @@ const AddYourRestaurant = () => {
         const response = await dispatch(addRestaurantThunk(newRestaurant))
 
         if(response && response.errors){
+            console.log("create failed front, ", response.errors )
             setErrors(response.errors )
         } else {
             const new_restaurant_id = response.id
@@ -58,7 +59,6 @@ const AddYourRestaurant = () => {
             </div>
             <div className="getstarted">
                 <h2>Get started</h2>
-                <h4><NavLink>Already have an account?</NavLink></h4>
                 <form className="newRestaurantForm" onSubmit={addNewRestaurant}>
                     <div>
                         <label htmlFor="name">Restaurant Name</label>
@@ -130,6 +130,9 @@ const AddYourRestaurant = () => {
                             <label htmlFor="in_a_rush">In a rush</label>
                             <input type="checkbox" name="" id="" value={in_a_rush} onChange={e => setIn_a_rush(e.target.value)} />
                         </div>
+                    </div>
+                    <div className='create_restaurants_errors'>
+                        {errors.errors && <p>Please Login or SignUp</p>}
                     </div>
                     <div className='sbmtbtn'>
                         <button>Submit</button>
