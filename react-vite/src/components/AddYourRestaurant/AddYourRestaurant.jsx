@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NavLink , useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import './AddYourRestaurant.css'
 import { useDispatch } from 'react-redux';
 import { addRestaurantThunk } from '../../redux/restaurants';
@@ -41,7 +41,7 @@ const AddYourRestaurant = () => {
         const response = await dispatch(addRestaurantThunk(newRestaurant))
 
         if(response && response.errors){
-            console.log("create failed front, ", response.errors )
+            // console.log("create failed front, ", response.errors )
             setErrors(response.errors )
         } else {
             const new_restaurant_id = response.id
