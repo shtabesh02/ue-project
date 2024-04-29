@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import './AddYourRestaurant.css'
 import { useDispatch } from 'react-redux';
 import { addRestaurantThunk } from '../../redux/restaurants';
-// import LoginFormPage from '../LoginFormPage';
+import LoginFormPage from '../LoginFormPage';
 
 const AddYourRestaurant = () => {
     const navigate = useNavigate();
