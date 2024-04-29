@@ -27,7 +27,13 @@ export const addRestaurantThunk = (newRestaurnt) => async (dispatch) => {
 	// console.log("response: ", response);
 	if (response.ok) {
 		const data = await response.json();
+		console.log("create succeed, ",data )
 		dispatch(addRestaurant(data));
+		return data
+	}
+	else {
+		const errorMessages = await response.json();
+		return { "errors": errorMessages }
 	}
 };
 

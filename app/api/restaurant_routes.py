@@ -43,7 +43,6 @@ def owner_restaurants():
 @restaurant_routes.route('/', methods=['POST'])
 @login_required
 def add_restaurant():
-    print('add_restaurant()')
     """
     Create a new restaurant.
     """
