@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NavLink , useNavigate} from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 import './AddYourRestaurant.css'
 import { useDispatch } from 'react-redux';
 import { addRestaurantThunk } from '../../redux/restaurants';
