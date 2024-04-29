@@ -18,7 +18,6 @@ export const addRestaurant = (restaurant) => ({
 // Thunk action for adding new restaurant
 export const addRestaurantThunk = (newRestaurnt) => async (dispatch) => {
 	// console.log('addRestaurantThunk()')
-
 	const response = await fetch("/api/restaurants/", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
