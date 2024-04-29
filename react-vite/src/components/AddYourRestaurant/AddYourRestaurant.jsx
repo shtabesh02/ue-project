@@ -44,7 +44,7 @@ const AddYourRestaurant = () => {
             setErrors(response.errors )
         } else {
             const new_restaurant_id = response.id
-            console.log("create succeed, ", new_restaurant_id)
+            // console.log("create succeed, ", new_restaurant_id)
             navigate(`/restaurants/${new_restaurant_id}`);
         }
     }
