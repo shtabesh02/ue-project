@@ -18,7 +18,6 @@ export const addRestaurant = (restaurant) => ({
 // Thunk action for adding new restaurant
 export const addRestaurantThunk = (newRestaurnt) => async (dispatch) => {
 	// console.log('addRestaurantThunk()')
-
 	const response = await fetch("/api/restaurants/", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
@@ -27,7 +26,14 @@ export const addRestaurantThunk = (newRestaurnt) => async (dispatch) => {
 	// console.log("response: ", response);
 	if (response.ok) {
 		const data = await response.json();
+		// console.log("create succeed, ",data )
 		dispatch(addRestaurant(data));
+		return data
+	}
+	else {
+		const errorMessages = await response.json();
+		console.log("create failed, ",errorMessages )
+		return { "errors": errorMessages }
 	}
 };
 

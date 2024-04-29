@@ -24,7 +24,8 @@ function Navigation() {
 							</NavLink>
 						</span>
 					</li>
-					<li className="login_signup">
+					{/* The bellow div was an li */}
+					<div className="login_signup">
 						<div>
 							<span>
 								<OpenModalMenuItem
@@ -39,7 +40,7 @@ function Navigation() {
 								/>
 							</span>
 						</div>
-					</li>
+					</div>
 				</ul>
 			) : (
 				<ul className="h_menu">
