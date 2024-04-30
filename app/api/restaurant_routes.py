@@ -124,7 +124,7 @@ def delete_item(item_id):
     if not menu_item:
         return {"message": "Menu Item couldn't be found"}
 
-    if int(current_user.get_id()) != menu_item.restaurant.user_id:
+    if int(current_user.get_id()) != menu_item.the_restaurant.user_id:
         return {"errors": {"message": "Unauthorized"}}, 401
 
     db.session.delete(menu_item)
