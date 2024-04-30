@@ -41,10 +41,8 @@ def update_items(id):
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
-    #     if int(current_user.get_id()) != menu_item.restaurant.user_id:
-    #         return {"errors": {"message": "Unauthorized"}}, 401
-    # User is already authenticated while going to my restaurants
-
+        if int(current_user.get_id()) != menu_item.restaurant.user_id:
+            return {"errors": {"message": "Unauthorized"}}, 401
         menu_item.type = form.data["type"]
         menu_item.food_name = form.data["food_name"]
         menu_item.decription = form.data["description"]
