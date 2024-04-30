@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NavLink , useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import './AddYourRestaurant.css'
 import { useDispatch } from 'react-redux';
 import { addRestaurantThunk } from '../../redux/restaurants';
@@ -20,6 +20,7 @@ const AddYourRestaurant = () => {
     const [in_a_rush, setIn_a_rush] = useState(false);
     const [errors, setErrors] = useState({});
 
+    
     const dispatch = useDispatch();
     const addNewRestaurant = async (e) => {
         e.preventDefault();
@@ -41,7 +42,7 @@ const AddYourRestaurant = () => {
         const response = await dispatch(addRestaurantThunk(newRestaurant))
 
         if(response && response.errors){
-            console.log("create failed front, ", response.errors )
+            // console.log("create failed front, ", response.errors )
             setErrors(response.errors )
         } else {
             const new_restaurant_id = response.id
@@ -59,6 +60,10 @@ const AddYourRestaurant = () => {
             </div>
             <div className="getstarted">
                 <h2>Get started</h2>
+                <h4>
+                    <span>Already have an account? </span>
+                    <a href="/login">Login</a>
+                </h4>
                 <form className="newRestaurantForm" onSubmit={addNewRestaurant}>
                     <div>
                         <label htmlFor="name">Restaurant Name</label>

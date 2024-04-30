@@ -32,7 +32,7 @@ export const addRestaurantThunk = (newRestaurnt) => async (dispatch) => {
 	}
 	else {
 		const errorMessages = await response.json();
-		console.log("create failed, ",errorMessages )
+		// console.log("create failed, ",errorMessages )
 		return { "errors": errorMessages }
 	}
 };
