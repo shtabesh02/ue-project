@@ -4,6 +4,7 @@
 
 Schema:
 ![Alt text](UE-Project.png)
+link: https://dbdiagram.io/d/Copy-of-UE-Project-6657abe4b65d9338790838c5
 
 [Render.com]: https://ue-project.onrender.com/
 
