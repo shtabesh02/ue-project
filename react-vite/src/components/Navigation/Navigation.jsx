@@ -6,10 +6,16 @@ import CartButton from "./CartButton";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import SignupFormModal from "../SignupFormModal";
 import LoginFormModal from "../LoginFormModal";
+import { useState } from "react";
 
 function Navigation() {
 	const user = useSelector((state) => state.session.user);
+	const [search, setSearch] = useState('');
 
+	// Search handle
+	const handlesearch = () => {
+		
+	}
 	return (
 		<div className="nav_bar">
 			{!user ? (
@@ -67,7 +73,12 @@ function Navigation() {
 							<span>Delivery</span>
 							<span>Pickup</span>
 							<span>Delivery Address</span>
-							<input type="text" placeholder="Search Uber Eats" />
+							<form onSubmit={handlesearch}>
+								<div className="search">
+									<input value={search} onChange={e => setSearch(e.target.value)} type="text" placeholder="Search Uber Eats" />
+									<button>Search</button>
+								</div>
+							</form>
 							<span className="Navigation__cart">
 								<CartButton />
 							</span>
