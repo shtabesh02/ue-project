@@ -1,0 +1,13 @@
+.resultcontainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.resultdetails{
+    margin: 20px;
+    padding: 20px;
+    max-width: 780px;
+}
+.resultdetails > * {
+    margin: 10px;
+}

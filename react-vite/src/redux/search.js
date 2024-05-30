@@ -16,13 +16,15 @@ export const searchfood = (foodname) => async (dispatch) => {
     }
 }
 
-const initialState = {
-    food : {}
-}
+const initialState = {}
 const searchReducer = (state = initialState, action) => {
     switch (action.type){
         case SEARCHMYFOOD: {
-            return {...state, food: {...state.food, [action.foodfound.id]: action.foodfound}}
+            // const _search = {};
+            // action.foodfound.forEach(food => _search[food.id] = food);
+            // return {...state, food: {...state.food, ..._search}}
+            // return { ...state, restaurantsDetails: action.payload };
+            return {...state, ...action.foodfound}
         }
         default:
             return state
