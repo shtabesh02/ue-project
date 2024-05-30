@@ -10,6 +10,7 @@ import sessionReducer from "./session";
 import restaurantsReducer from "./restaurants";
 import cartReducer from "./cart";
 import menuitemsReducer from "./menu_items";
+import searchReducer from "./search";
 
 
 
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   restaurants: restaurantsReducer,
   cart: cartReducer,
   menuitems: menuitemsReducer,
+  search: searchReducer,
 });
 
 let enhancer;

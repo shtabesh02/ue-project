@@ -11,6 +11,7 @@ import EditRestaurantForm from "../components/EditRestaurantForm";
 import ManageMenuItems from "../components/ManageMenuItems";
 import AddNewItem from "../components/ManageMenuItems/AddNewItem";
 import UpdateItem from "../components/ManageMenuItems/UpdateItem";
+import SearchResult from "../components/SearchResult/SearchResult";
 
 export const router = createBrowserRouter([
 	{
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
 				path: "/restaurants/:id/item",
 				element: <UpdateItem />,
 			},
+			{
+				path: "/searchresult",
+				element: <SearchResult />
+			}
 		],
 	},
 ]);

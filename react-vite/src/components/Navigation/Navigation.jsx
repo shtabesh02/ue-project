@@ -1,20 +1,30 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartButton from "./CartButton";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import SignupFormModal from "../SignupFormModal";
 import LoginFormModal from "../LoginFormModal";
 import { useState } from "react";
+import { searchfood } from "../../redux/search";
 
 function Navigation() {
 	const user = useSelector((state) => state.session.user);
 	const [search, setSearch] = useState('');
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	// Search handle
-	const handlesearch = () => {
-		
+	const handlesearch = (e) => {
+		e.preventDefault();
+		dispatch(searchfood(search))
+		.then(() => {
+			navigate('/searchresult')
+		})
+		.catch(() => {
+			navigate('/searchresult')
+		})
 	}
 	return (
 		<div className="nav_bar">
