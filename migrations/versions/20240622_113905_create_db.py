@@ -1,8 +1,8 @@
-"""create db migration
+"""create db
 
-Revision ID: eedf2ec9a7e8
-Revises:
-Create Date: 2024-04-19 09:33:01.179719
+Revision ID: bd061cdd5a1a
+Revises: 
+Create Date: 2024-06-22 11:39:05.537738
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'eedf2ec9a7e8'
+revision = 'bd061cdd5a1a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -54,6 +54,7 @@ def upgrade():
     op.create_table('shoppingcarts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

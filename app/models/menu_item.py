@@ -5,10 +5,12 @@ class MenuItem(db.Model):
     __tablename__ = "menuitems"
 
     if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
+        __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    restaurant_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("restaurants.id")))
+    restaurant_id = db.Column(
+        db.Integer, db.ForeignKey(add_prefix_for_prod("restaurants.id"))
+    )
     type = db.Column(db.String(50), nullable=False)
     food_name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(1000))
@@ -25,6 +27,7 @@ class MenuItem(db.Model):
         return {
             "id": self.id,
             "restaurant_id": self.restaurant_id,
+            "restaurant_name": self.the_restaurant.name,
             "type": self.type,
             "food_name": self.food_name,
             "description": self.description,

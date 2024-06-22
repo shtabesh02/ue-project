@@ -12,6 +12,7 @@ import ManageMenuItems from "../components/ManageMenuItems";
 import AddNewItem from "../components/ManageMenuItems/AddNewItem";
 import UpdateItem from "../components/ManageMenuItems/UpdateItem";
 import SearchResult from "../components/SearchResult/SearchResult";
+import CartHistory from "../components/CartHistory";
 
 export const router = createBrowserRouter([
 	{
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
 				element: <ShoppingCart />,
 			},
 			{
+				path: "/cart/history",
+				element: <CartHistory />,
+			},
+			{
 				path: "/myaccountpage",
 				element: <AccountPage />,
 			},
@@ -63,8 +68,8 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: "/searchresult",
-				element: <SearchResult />
-			}
+				element: <SearchResult />,
+			},
 		],
 	},
 ]);

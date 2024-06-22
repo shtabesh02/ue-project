@@ -3,6 +3,7 @@ import { createSelector } from "reselect";
 const ADD_CART_ITEM = "cart/add";
 const REMOVE_CART_ITEM = "cart/remove";
 const DELETE_CART = "cart/deleteCart";
+const LOAD_HISTORY = "cart/loadHistory";
 
 export const addCartItem = (item) => ({
 	type: ADD_CART_ITEM,
@@ -17,6 +18,11 @@ export const removeCartItem = (item) => ({
 export const deleteCart = (item) => ({
 	type: DELETE_CART,
 	payload: item,
+});
+
+export const loadHistory = (payload) => ({
+	type: LOAD_HISTORY,
+	payload,
 });
 
 export const thunkPostTransaction = (items) => async (dispatch) => {
@@ -34,16 +40,44 @@ export const thunkPostTransaction = (items) => async (dispatch) => {
 	}
 };
 
+export const thunkGetHistory = () => async (dispatch) => {
+	const res = await fetch("/api/cart/");
+
+	if (res.ok) {
+		const data = await res.json();
+		dispatch(loadHistory(data));
+		return data;
+	}
+};
+
+///
+/// State
+///
+
+const initialState = {
+	history: {},
+	items: {},
+	subTotal: 0,
+	count: 0,
+	restaurantId: null,
+};
+
 ///
 /// Selectors
 ///
 
 export const cartSelector = (state) => state.cart;
 export const cartItemsArr = createSelector(cartSelector, (cartItems) =>
-	Object.entries(cartItems.items),
+	Object.entries(cartItems.items || {}),
+);
+export const historyArr = createSelector(
+	(state) => state.cart.history,
+	(history) => Object.entries(history || {}),
 );
 
-const initialState = { items: {}, subTotal: 0, count: 0, restaurantId: null };
+///
+/// Reducer
+///
 
 export default function cartReducer(state = initialState, action) {
 	switch (action.type) {
@@ -78,6 +112,8 @@ export default function cartReducer(state = initialState, action) {
 		}
 		case DELETE_CART:
 			return { items: {}, subTotal: 0, count: 0, restaurantId: null };
+		case LOAD_HISTORY:
+			return { ...state, history: action.payload };
 		default:
 			return state;
 	}

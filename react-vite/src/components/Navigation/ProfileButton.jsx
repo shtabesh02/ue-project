@@ -68,7 +68,7 @@ function ProfileButton() {
 									</NavLink>
 								</div>
 							</li>
-							<li>Orders</li>
+							<li onClick={() => navigate("/cart/history")}>Orders</li>
 							<li>Favorites</li>
 							<li>Wallet</li>
 							<li>Meal plan</li>

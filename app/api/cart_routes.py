@@ -9,13 +9,15 @@ cart_routes = Blueprint("cart", __name__)
 @cart_routes.route("/")
 @login_required
 def list_cart_items():
-    # cart_items = {}
-    # for item in CartItem.query.all():
-    #     cart_items[item.id] = item.menuitem.to_dict()
-    #     cart_items[item.id]["quantity"] = item.quantity
-    # return cart_items
+    history = ShoppingCart.query.filter_by(user_id=current_user.get_id()).all()
 
-    return {item.quantity: item.menuitem.to_dict() for item in CartItem.query.all()}
+    return {
+        cart.id: {
+            "menu_items": [item.menuitem.to_dict() for item in cart.cartitems],
+            "time": cart.created_at,
+        }
+        for cart in history
+    }
 
 
 @cart_routes.route("/", methods=["POST"])
@@ -26,7 +28,6 @@ def make_transaction():
     """
     form = ShoppingCartForm()
 
-    print(request.json)
     data = request.json["cart_items"]
     for x in range(len(data)):
         data[x]["csrf_token"] = request.cookies["csrf_token"]

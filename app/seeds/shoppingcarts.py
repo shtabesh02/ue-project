@@ -8,7 +8,6 @@ def seed_shoppingcarts():
     shoppingcart2 = ShoppingCart(user_id=2)
     shoppingcart3 = ShoppingCart(user_id=3)
 
-
     db.session.add(shoppingcart1)
     db.session.add(shoppingcart2)
     db.session.add(shoppingcart3)
@@ -24,7 +23,9 @@ def seed_shoppingcarts():
 # it will reset the primary keys for you as well.
 def undo_shoppingcarts():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.shoppingcarts RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.shoppingcarts RESTART IDENTITY CASCADE;"
+        )
     else:
         db.session.execute(text("DELETE FROM shoppingcarts"))
 

@@ -1,0 +1,19 @@
+.CartHistory {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.CartHistory div {
+    width: 50%;
+}
+
+.CartHistory h3 {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+}
+
+.CartHistory p {
+    color: var(--grey);
+}

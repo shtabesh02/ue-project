@@ -6,11 +6,17 @@ from sqlalchemy.sql import text
 def seed_cartitems():
     cartitem1 = CartItem(shopping_cart_id=1, menu_items_id=1, quantity=3)
     cartitem2 = CartItem(shopping_cart_id=1, menu_items_id=2, quantity=1)
-
-
+    cartitem3 = CartItem(shopping_cart_id=2, menu_items_id=1, quantity=3)
+    cartitem4 = CartItem(shopping_cart_id=2, menu_items_id=2, quantity=1)
+    cartitem5 = CartItem(shopping_cart_id=3, menu_items_id=1, quantity=3)
+    cartitem6 = CartItem(shopping_cart_id=3, menu_items_id=2, quantity=1)
 
     db.session.add(cartitem1)
     db.session.add(cartitem2)
+    db.session.add(cartitem3)
+    db.session.add(cartitem4)
+    db.session.add(cartitem5)
+    db.session.add(cartitem6)
 
     db.session.commit()
 
@@ -23,7 +29,9 @@ def seed_cartitems():
 # it will reset the primary keys for you as well.
 def undo_cartitems():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.cartitems RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.cartitems RESTART IDENTITY CASCADE;"
+        )
     else:
         db.session.execute(text("DELETE FROM cartitems"))
 
