@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { addCartItem } from "../../redux/cart";
 
 export default function MenuItemCard({ item, restaurantId }) {
 	const stateRestId = useSelector((state) => state.cart.restaurantId);
 	const user = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const addItem = (menuitem) => () => {
 		if ((user && stateRestId === null) || restaurantId === stateRestId) {
@@ -20,14 +22,20 @@ export default function MenuItemCard({ item, restaurantId }) {
 
 	return (
 		<div className="RestDetails__menuCard">
-			<div className="RestDetails__menuCardDetails">
+			<div
+				className="RestDetails__menuCardDetails"
+				onClick={() => navigate(`/restaurants/${restaurantId}`)}
+			>
 				<div>
 					<div className="bold">{item.food_name}</div>
 					<p>${item.price}</p>
 					<div className="grey">{item.description}</div>
 				</div>
 			</div>
-			<div className="RestDetails__menuImgContainer">
+			<div
+				className="RestDetails__menuImgContainer"
+				onClick={() => navigate(`/restaurants/${restaurantId}`)}
+			>
 				<img className="RestDetails__menuImg" src={item.img_url} />
 			</div>
 			<div className="RestDetails__addButton" onClick={addItem(item)}>
