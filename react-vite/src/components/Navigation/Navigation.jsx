@@ -11,7 +11,7 @@ import { searchfood } from "../../redux/search";
 
 function Navigation() {
 	const user = useSelector((state) => state.session.user);
-	const [search, setSearch] = useState('');
+	const [search, setSearch] = useState("");
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -19,13 +19,13 @@ function Navigation() {
 	const handlesearch = (e) => {
 		e.preventDefault();
 		dispatch(searchfood(search))
-		.then(() => {
-			navigate('/searchresult')
-		})
-		.catch(() => {
-			navigate('/searchresult')
-		})
-	}
+			.then(() => {
+				navigate("/searchresult");
+			})
+			.catch(() => {
+				navigate("/searchresult");
+			});
+	};
 	return (
 		<div className="nav_bar">
 			{!user ? (
@@ -41,7 +41,7 @@ function Navigation() {
 								className="logo bold"
 							>
 								Uber Eats
- 							</NavLink>
+							</NavLink>
 						</span>
 					</li>
 					{/* The bellow div was an li */}
@@ -85,11 +85,19 @@ function Navigation() {
 							<span>Delivery Address</span>
 							<form onSubmit={handlesearch}>
 								<div className="search">
-									<input value={search} onChange={e => setSearch(e.target.value)} type="text" placeholder="Search Uber Eats" />
+									<input
+										value={search}
+										onChange={(e) => setSearch(e.target.value)}
+										type="text"
+										placeholder="Search Uber Eats"
+									/>
 									<button>Search</button>
 								</div>
 							</form>
-							<span className="Navigation__cart">
+							<span
+								className="Navigation__cart"
+								onClick={() => navigate("/cart")}
+							>
 								<CartButton />
 							</span>
 						</div>
