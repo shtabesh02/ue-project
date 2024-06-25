@@ -41,7 +41,7 @@ function Navigation() {
 								className="logo bold"
 							>
 								Uber Eats
-							</NavLink>
+ 							</NavLink>
 						</span>
 					</li>
 					{/* The bellow div was an li */}

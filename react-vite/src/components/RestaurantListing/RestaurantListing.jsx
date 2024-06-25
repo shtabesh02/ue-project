@@ -1,40 +1,64 @@
+import React, { useState, useEffect } from 'react';
 import RestaurantItem from '../RestaurantItem';
 import './RestaurantListing.css';
-
+import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
 function RestaurantListing({ feature, allRestaurants }) {
-    // const dispatch = useDispatch();
-    // const allRestaurants = useSelector(state => state.restaurants.restaurants);
+    const [page, setPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(getItemsPerPage()); // Initialize with function to get items per page based on current width
 
-    // useEffect(() => {
-    //     console.log('useEffect for RestaurantListing runs');
-    //     dispatch(loadRestaurantsThunk());
-    // }, [dispatch]);
+    // Helper function to determine items per page based on window width
+    function getItemsPerPage() {
+        const width = window.innerWidth;
+        if (width < 768) return 2; // Smaller devices
+        if (width >= 768 && width < 1000) return 3; // Tablets
+        return 4; // Desktops and larger devices
+    }
 
-    if (!Object.values(allRestaurants).length) return <div>No Restaurants</div>;
+    // Handle window resize
+    useEffect(() => {
+        function handleResize() {
+            setItemsPerPage(getItemsPerPage());
+        }
 
-    const hasFeature = !!feature
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+
+    if (!Object.values(allRestaurants).length) {
+        return <div>No Restaurants</div>;
+    }
+
+    const hasFeature = !!feature;
+    const filteredRestaurants = feature ? Object.values(allRestaurants).filter(restaurant => restaurant[feature]) : Object.values(allRestaurants);
+    const itemsToShow = feature ? filteredRestaurants.slice(startIndex, endIndex) : filteredRestaurants;
+
     return (
         <div className="restaurant-list">
-            {feature && <h2 className="feature-heading">{feature.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}</h2>}
-            {!feature && <h2 className="feature-heading">All Stores</h2>}
+            <div className='restaurant-headers'>
+                {feature && <h2 className="feature-heading">{feature.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}</h2>}
+                {!feature && <h2 className="feature-heading">All Stores</h2>}
+                {feature && (
+                    <div className="pagination-controls">
+                        <button onClick={() => setPage(Math.max(1, page - 1))} disabled={page === 1}>
+                            <FaArrowLeft />
+                        </button>
+                        <button onClick={() => setPage(page + 1)} disabled={endIndex >= filteredRestaurants.length}>
+                            <FaArrowRight />
+                        </button>
+                    </div>
+                )}
+            </div>
             <div className={`restaurantSection${hasFeature ? ' scrollable' : ''}`} key={feature}>
                 <div className="item-container">
-                    {feature ? (
-                        Object.values(allRestaurants)
-                            .filter(restaurant => restaurant[feature])
-                            .map(restaurant => (
-                                <div className="item" key={restaurant.id}>
-                                    <RestaurantItem restaurantId={restaurant.id} restaurant={restaurant} />
-                                </div>
-                            ))
-                    ) : (
-                        Object.values(allRestaurants).map(restaurant => (
-                            <div className="item" key={restaurant.id}>
-                                <RestaurantItem restaurantId={restaurant.id} restaurant={restaurant} />
-                            </div>
-                        ))
-                    )}
+                    {itemsToShow.map(restaurant => (
+                        <div className="item" key={restaurant.id}>
+                            <RestaurantItem restaurantId={restaurant.id} restaurant={restaurant} />
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>

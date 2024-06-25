@@ -10,16 +10,35 @@
   margin-bottom: 10px;
 }
 
-
-.scrollable {
-  overflow-x: auto; /* Enable horizontal scrolling */
-  white-space: nowrap; /* Prevent items from wrapping to the next line */
+.restaurant-headers {
+  display: flex;
+  justify-content: space-between;
 }
 
+.pagination-controls {
+  margin-top: 20px;
+}
 
+.pagination-controls button {
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.restaurantSection {
+  width: 100%;
+  align-items: center;
+  position: relative;
+}
+
+.item-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 
 .item-container .item {
-  display: inline-block; /* Display items in a row */
   margin-right: 5px;
 }
 
@@ -33,12 +52,12 @@
 
   @media (min-width: 768px) {
     .item {
-      width: 33.33%; /* Three columns on screens wider than 768px */
+      width: 32.33%; /* Three columns on screens wider than 768px */
     }
   }
 
   @media (min-width: 1000px) {
     .item {
-      width: 23%; /* Four columns on screens wider than 1200px */
+      width: 24%; /* Four columns on screens wider than 1200px */
     }
   }
