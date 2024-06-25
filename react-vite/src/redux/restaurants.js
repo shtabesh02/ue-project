@@ -3,6 +3,7 @@ const ADD_RESTAURANT = "restaurants/addRestaurant";
 // const UPDATE_RESTAURANT = 'restaurants/updateRestaurant';
 const DELETE_RESTAURANT = "restaurants/deleteRestaurant";
 const SET_DETAILS = "restaurants/setDetails";
+const CLEAR_DETAILS = "restaurants/clearDetails";
 
 export const loadRestaurants = (restaurants) => ({
 	type: LOAD_RESTAURANTS,
@@ -28,12 +29,11 @@ export const addRestaurantThunk = (newRestaurnt) => async (dispatch) => {
 		const data = await response.json();
 		// console.log("create succeed, ",data )
 		dispatch(addRestaurant(data));
-		return data
-	}
-	else {
+		return data;
+	} else {
 		const errorMessages = await response.json();
 		// console.log("create failed, ",errorMessages )
-		return { "errors": errorMessages }
+		return { errors: errorMessages };
 	}
 };
 
@@ -45,6 +45,10 @@ export const deleteRestaurant = (restaurantId) => ({
 const setDetails = (payload) => ({
 	type: SET_DETAILS,
 	payload,
+});
+
+export const clearDetails = () => ({
+	type: CLEAR_DETAILS,
 });
 
 export const loadRestaurantsThunk = () => async (dispatch) => {
@@ -88,10 +92,9 @@ export const updateRestaurantThunk = (payload, id) => async (dispatch) => {
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(addRestaurant(data));
-	}
-	else {
+	} else {
 		const errorMessages = await response.json();
-		return { "errors": errorMessages }
+		return { errors: errorMessages };
 	}
 };
 
@@ -137,6 +140,8 @@ const restaurantsReducer = (state = initialState, action) => {
 		}
 		case SET_DETAILS:
 			return { ...state, restaurantsDetails: action.payload };
+		case CLEAR_DETAILS:
+			return { ...state, restaurantsDetails: {} };
 		default:
 			return state;
 	}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loadRestDetails } from "../../redux/restaurants";
+import { clearDetails, loadRestDetails } from "../../redux/restaurants";
 import MenuNav from "./MenuNav";
 import MenuItemCard from "./MenuItemCard";
 import "./RestDetails.css";
@@ -14,8 +14,10 @@ export default function RestDetails() {
 		(state) => state.restaurants.restaurantsDetails,
 	);
 	const [types, setTypes] = useState([]);
+
 	useEffect(() => {
 		dispatch(loadRestDetails(id));
+		return () => dispatch(clearDetails());
 	}, [dispatch, id]);
 
 	useEffect(() => {
