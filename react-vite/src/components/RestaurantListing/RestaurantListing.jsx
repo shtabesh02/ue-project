@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import RestaurantItem from '../RestaurantItem';
 import './RestaurantListing.css';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
