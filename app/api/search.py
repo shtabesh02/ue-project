@@ -8,6 +8,6 @@ def seachfood(foodname):
     searchresult = MenuItem.query.filter(
         db.or_(MenuItem.food_name.ilike(search_pattern))
     )
-    print('test')
+    print('test: ', foodname)
     print('search result: ', searchresult)
     return {"food": {r.id: r.to_dict() for r in searchresult}}
