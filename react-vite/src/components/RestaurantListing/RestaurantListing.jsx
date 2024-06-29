@@ -15,6 +15,7 @@ function RestaurantListing({ feature, allRestaurants }) {
         return 4; // Desktops and larger devices
     }
 
+    
     // Handle window resize
     useEffect(() => {
         function handleResize() {
